@@ -87,6 +87,11 @@ section{padding-top:46px}
 .lbl.note{color:var(--red);background:var(--red-bg)}
 .concept-box{border-left:3px solid var(--accent);padding-left:14px;color:var(--ink-soft)}
 .concept-box b{color:var(--ink)}
+.lbl.q{color:#fff;background:var(--ink)}
+.qbox{background:#F1F3F6;border:1px solid var(--line);border-radius:9px;padding:11px 15px;
+  color:var(--ink);font-size:.96rem;line-height:1.75}
+.qbox .g{font-family:var(--mono);font-size:.9rem;color:var(--accent);background:#fff;
+  border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin:1px;display:inline-block}
 .fbox{background:#F6F8FA;border:1px solid var(--line);border-radius:9px;padding:12px 14px;
   font-family:var(--mono);font-size:.92rem;overflow-x:auto;line-height:1.9}
 .fbox .var{color:var(--accent);font-weight:600}
@@ -251,6 +256,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">13.1</span><span class="qttl">用 CAPM 求權益成本<small>β=1.07,無風險利率 3.4%,市場報酬 11%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司股票 β = <span class="g">1.07</span>,無風險利率 <span class="g">3.4%</span>,市場預期報酬 <span class="g">11%</span>。請用 CAPM 求權益資金成本 R<sub>E</sub>。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>CAPM</b>:股東要求報酬 = 無風險利率 + β ×(市場風險溢酬)。β 衡量個股相對市場的系統風險。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -271,6 +278,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">13.5</span><span class="qttl">求 WACC<small>權益權重 70%、R<sub>E</sub>=11.3%;負債權重 30%、R<sub>D</sub>=5.9%;稅率 23%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司目標資本結構為權益 <span class="g">70%</span>、負債 <span class="g">30%</span>。權益成本 R<sub>E</sub> = <span class="g">11.3%</span>,稅前負債成本 R<sub>D</sub> = <span class="g">5.9%</span>,稅率 <span class="g">23%</span>。求 WACC。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>WACC</b> = 各資金來源報酬,以市值權重加權。負債利息可抵稅,所以用<b>稅後</b>負債成本 R<sub>D</sub>(1−T<sub>c</sub>)。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -292,6 +301,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">13.7</span><span class="qttl">求資本結構權重<small>負債市值與權益市值,算 D/V、E/V、D/E</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">已知公司負債與權益的市值,請計算資本結構權重:負債佔總值比 D/V、權益佔總值比 E/V,以及負債權益比 D/E。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">資金成本一律用<b>市值</b>權重(非帳面值)。V = D + E。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -309,6 +320,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">13.10</span><span class="qttl">稅前負債成本與權益成本<small>(a) 由債券價格求稅前 R<sub>D</sub>;(b) D/E=0.65 求 R<sub>E</sub></small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">(a) 已知公司 WACC、權益成本 R<sub>E</sub> = <span class="g">14%</span>、稅率 <span class="g">23%</span> 與資本結構,求稅前負債成本 R<sub>D</sub>。(b) 若 D/E = <span class="g">0.65</span>、稅後負債成本已知,反求權益成本 R<sub>E</sub>。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>(a)</b> 稅前負債成本 = 債券的到期殖利率(YTM),用債券現價解出。<b>(b)</b> 由 WACC 反推:已知 WACC、R<sub>D</sub>、權重,解 R<sub>E</sub>。D/E=0.65 → D/V=0.65/1.65,E/V=1/1.65。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -329,6 +342,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">13.13</span><span class="qttl">用 CAPM 取代單一門檻報酬<small>四個專案 W/X/Y/Z,比較 IRR 與各自 CAPM 要求報酬</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">無風險利率 <span class="g">4%</span>、市場報酬 <span class="g">12%</span>。四個專案 W、X、Y、Z 的 β 分別為 <span class="g">0.83 / 0.92 / 1.09 / 1.35</span>,各有其 IRR。(a) 若用全公司 12% 門檻會接受哪些?(b) 用各自 CAPM 要求報酬應接受哪些?(c) 用單一門檻會造成哪些誤判?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">每個專案風險(β)不同,應各自用 CAPM 算<b>專屬</b>要求報酬,而非全公司用同一個門檻(如 12%)。誤用單一門檻會接受太高風險的爛案、拒絕低風險的好案。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟 — 各專案 CAPM 要求報酬</span>
@@ -358,6 +373,8 @@ N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<sp
   <details class="card" open>
     <summary><span class="qno">18.1</span><span class="qttl">全權益最高買價 + APV<small>(a) 全權益融資最高可付價;(b) 含 $450,000 負債的 APV</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Benton 公司評估購入 <span class="g">25</span> 輛車的車隊,直線折舊 <span class="g">5</span> 年,每年稅前折舊前利潤(PBTD)<span class="g">$225,000</span>。(a) 若全用權益融資,最高可付多少買價?(b) 若以 <span class="g">$700,000</span> 購入並舉借 <span class="g">$450,000</span>、利率 <span class="g">8%</span> 只付息負債,求 APV。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>APV</b> = 全權益基礎 NPV(Base NPV)+ 融資副效果(主要是負債利息<b>稅盾</b>現值)。全權益最高買價:讓 base NPV = 0 的價格。折舊用直線法、折舊稅盾 = 折舊 × T<sub>c</sub>。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -381,6 +398,8 @@ APV = −成本 + UCF·PVIFA + 利息稅盾·PVIFA<span class="var">D</span></di
   <details class="card" open>
     <summary><span class="qno">18.5</span><span class="qttl">用 unlevered β 求各公司 R<sub>E</sub><small>同產業 unlevered β=1.05,兩家不同 D/E</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">同產業的 unlevered(資產)β = <span class="g">1.05</span>。North 與 South 兩家公司有不同的 D/E。無風險利率 <span class="g">3.2%</span>、市場風險溢酬 <span class="g">8.1%</span>、稅率 <span class="g">21%</span>。求兩家各自的權益成本 R<sub>E</sub>。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">先取得資產(unlevered)β,再依各公司 D/E 用 <b>levering</b> 公式還原成 levered β<sub>E</sub>,代入 CAPM 求 R<sub>E</sub>。假設負債 β=0。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -398,6 +417,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">18.6</span><span class="qttl">補貼貸款的 NPV(含發行成本)<small>(a) 不含發行成本;(b) 含發行成本</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Kendrick 取得一筆 <span class="g">10</span> 年期、利率 <span class="g">5.8%</span> 的貸款,毛額 <span class="g">$5.3M</span>,發行成本 <span class="g">2.5%</span>,稅率 <span class="g">21%</span>。(a) 不含發行成本時此貸款的 NPV?(b) 含發行成本後的 NPV?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">公平定價的貸款 NPV=0。發行成本可<b>分期攤銷</b>,攤銷金額產生稅盾。融資 CF 用<b>稅後</b>利率折現。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -412,6 +433,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">18.7</span><span class="qttl">全權益專案 NPV<small>用 R<sub>E</sub>=11.2% 折現;R<sub>f</sub>=3.4% 是干擾項</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Jimenez 為全權益公司,權益成本 <span class="g">11.2%</span>(無風險利率 3.4% 為干擾項)。專案投資 <span class="g">$11.6M</span>,直線折舊,每年營收減費用 <span class="g">$3.5M</span>,共 <span class="g">6</span> 年,稅率 <span class="g">23%</span>。求 NPV 並判斷是否接受。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">全權益公司 → 折現率就是<b>權益成本 R<sub>E</sub></b>,不用 WACC。OCF = 稅後營業利潤 + 折舊稅盾。R<sub>f</sub> 在此不需要(干擾項)。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -427,6 +450,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">18.8</span><span class="qttl">永續現金流 + WACC<small>WACC 折現永續 OCF</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">National Electric 評估 <span class="g">$41M</span> 專案,產生永續 unlevered 現金流 <span class="g">$3.1M</span>/年。稅前負債成本 <span class="g">5.1%</span>、權益成本 <span class="g">10.3%</span>、目標負債佔比 <span class="g">60%</span>、稅率 <span class="g">21%</span>。用 WACC 求 NPV。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">永續現金流現值 = CF / WACC。WACC 用稅後負債成本。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -454,6 +479,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">19.1</span><span class="qttl">除息日股價(含稅)<small>原價 $78.35,股利 $5.85,稅率 15%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Gatto 股票除息前股價 <span class="g">$78.35</span>,將發放現金股利 <span class="g">$5.85</span>,股利稅率 <span class="g">15%</span>。求除息日股價。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">除息日股價下跌幅度 ≈ 稅後股利。若股利課稅,跌幅 = 股利 ×(1−稅率)。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -474,6 +501,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">19.2</span><span class="qttl">股票股利對權益帳戶的影響<small>40,000 股,面額 $0.50;(a) 10% 股利 (b) 25% 股利,市價 $42</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Vulcano 普通股面額 <span class="g">$0.50</span>、共 <span class="g">40,000</span> 股、資本公積 $210,000、保留盈餘 $587,300。市價 <span class="g">$42</span>。求 (a) 10% 股票股利、(b) 25% 股票股利後各權益帳戶。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>小額股票股利(&lt;20–25%)</b>:依<b>市價</b>把保留盈餘轉到普通股本與資本公積。普通股本增加 = 新股數 × 面額;資本公積增加 = 新股數 ×(市價−面額);保留盈餘減少 = 新股數 × 市價。總權益不變。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -488,6 +517,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">19.3</span><span class="qttl">股票分割與反分割<small>(a) 4 拆 1;(b) 1 併 5 反分割</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司原有 <span class="g">40,000</span> 股、面額 <span class="g">$0.50</span>。求 (a) 4 拆 1 分割、(b) 1 併 5 反分割後的股數、面額與各帳戶變化。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">股票分割<b>只改股數與面額</b>,各權益帳戶金額完全不變(只是重新分配)。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟(原 40,000 股、面額 $0.50)</span>
@@ -502,6 +533,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">19.4</span><span class="qttl">分割/股利後的新股價<small>SMO 540,000 股 @$83;四種情境</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">SMO 公司有 <span class="g">540,000</span> 股,股價 <span class="g">$83</span>。求下列各情境後的新股價:(a) 5 換 3 分割、(b) 15% 股票股利、(c) 42.5% 股票股利、(d) 4 換 7 反分割。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">市值不變 → 新股價 = 原市值 / 新股數 = 原股價 ×(原股數/新股數)。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -518,6 +551,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">19.7</span><span class="qttl">股票股利後的每股權益與股價<small>Murray 25% 股利,11,000 股,權益 $670,000</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Murray Manufacturing 發放 <span class="g">25%</span> 股票股利,流通在外 <span class="g">11,000</span> 股,公司權益總額 <span class="g">$670,000</span>。求除權後每股股價。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">總權益(市值)不變,股數增加 → 每股價值下降。新股價 = 原市值 / 新股數。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -544,6 +579,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">22.6</span><span class="qttl">用買賣權平價求賣權<small>C=5.27,E=70,R=…,t=…,S=73</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">$73</span>,買權履約價 <span class="g">$70</span>、權利金 <span class="g">$5.27</span>,到期 <span class="g">3</span> 個月,連續複利無風險利率 <span class="g">2.6%</span>。用買賣權平價求賣權價格。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>Put‑Call Parity(連續複利)</b>:同履約價、同到期的買權與賣權有固定關係。已知三者求第四。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -564,6 +601,8 @@ R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">
   <details class="card" open>
     <summary><span class="qno">22.10</span><span class="qttl">Black‑Scholes 求買權與賣權<small>S=58, E=60, R=2.7%, t=4/12, σ=47%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">$58</span>、履約價 <span class="g">$60</span>、到期 <span class="g">4</span> 個月、無風險利率 <span class="g">2.7%</span>、波動率 σ = <span class="g">47%</span>。用 Black‑Scholes 求買權與賣權價格。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>Black‑Scholes</b>:先算 d₁、d₂,內插查 N(d₁)、N(d₂),再代入買權公式;賣權用平價或 BS 賣權式。</div></div>
       <div class="blk"><span class="lbl formula">公式(考試會給)</span>
@@ -591,6 +630,8 @@ C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(
   <details class="card" open>
     <summary><span class="qno">22.11</span><span class="qttl">Black‑Scholes 求買權與賣權<small>S=58, E=55, R=4%, t=5/12, σ=53%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">$58</span>、履約價 <span class="g">$55</span>、無風險利率 <span class="g">4%</span>、到期 <span class="g">5</span> 個月、波動率 σ = <span class="g">53%</span>。求買權與賣權價格。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
         <ol class="steps">
           <li>σ√t = 0.53×√(0.4167) = <span class="num">0.3421</span></li>
@@ -607,6 +648,8 @@ C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(
   <details class="card" open>
     <summary><span class="qno">22.12</span><span class="qttl">選擇權 Delta<small>S=74, E=70, R=4.3%, t=9/12, σ=46%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">$74</span>、履約價 <span class="g">$70</span>、無風險利率 <span class="g">4.3%</span>、到期 <span class="g">9</span> 個月、波動率 σ = <span class="g">46%</span>。求買權與賣權的 Delta,並解釋其意義。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>Delta</b> = 股價每變動 $1,選擇權價值的變動。買權 Delta = N(d₁);賣權 Delta = N(d₁) − 1。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -624,6 +667,8 @@ C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(
   <details class="card" open>
     <summary><span class="qno">22.16</span><span class="qttl">二項式(風險中立)評價買權<small>S=84, u=1.18, d=0.82, K=80, R<sub>f</sub>=8%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">$84</span>,一年後上漲 <span class="g">18%</span> 或下跌 <span class="g">18%</span>,買權履約價 <span class="g">$80</span>,無風險利率 <span class="g">8%</span>。用風險中立法求買權價格。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>風險中立評價</b>:算上漲機率 p,讓期望報酬等於無風險;買權價 = 期望到期報酬以 R<sub>f</sub> 折現。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -652,6 +697,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">23.1</span><span class="qttl">員工選擇權評價與決策<small>Cheryl:S=E=50, R=6%, t=5, σ=53%,35,000 股</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Cheryl Levin 獲配 <span class="g">35,000</span> 份履約價=現價的歐式買權,股價 <span class="g">$50</span>、到期 <span class="g">5</span> 年、波動率 <span class="g">53%</span>、無風險利率 <span class="g">6%</span>。(a) 用 BS 評價;(b) 與 <span class="g">$750,000</span> 現金 bonus 比較該選哪個;(c) 若風險趨避且不能賣出,看法是否改變?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">公司給的股票選擇權用 BS 評價(履約價=現價即 at‑the‑money)。再與現金 bonus 比較。<b>對員工本人</b>而言,因無法分散、不能避險,BS 會<b>高估</b>其主觀價值。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -676,6 +723,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">23.2</span><span class="qttl">總薪酬(薪資現值 + 選擇權)<small>Jared:薪資 350,000/年×3,選擇權 S=E=53, R=5%, t=3, σ=57%,25,000 股</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Jared Lazarus 的薪酬:年薪 <span class="g">$350,000</span>(年底支付、共 <span class="g">3</span> 年、折現率 <span class="g">7%</span>)加 <span class="g">25,000</span> 份履約價=現價的歐式買權(股價 <span class="g">$53</span>、到期 3 年、波動率 <span class="g">57%</span>、無風險利率 <span class="g">5%</span>)。求總薪酬現值。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">總薪酬 = 薪資年金現值 + 選擇權 BS 總值。薪資用一般年金現值(折現率 7%)。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -700,6 +749,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">24.1</span><span class="qttl">轉換價格<small>面額 $1,000,轉換比率 15.7</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">可轉債面額 <span class="g">$1,000</span>,轉換比率 <span class="g">15.7</span> 股。求轉換價格。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>轉換價格</b> = 面額 / 轉換比率,即每換一股相當於用多少債券面額。</div></div>
       <div class="blk"><span class="lbl formula">公式</span><div class="fbox">轉換價格 = 面額 / 轉換比率</div></div>
@@ -712,6 +763,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">24.3</span><span class="qttl">轉換價值與轉換溢價<small>轉換比率 15.2,股價 $46.34,面額 $1,000</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Agawal 可轉債轉換比率 <span class="g">15.2</span> 股、面額 $1,000,股價 <span class="g">$46.34</span>。求轉換價值、轉換價格與轉換溢價。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>轉換價值</b> = 轉換比率 × 股價(現在換成股票值多少)。<b>轉換溢價</b>(相對股價)=(轉換價格 − 股價)/ 股價。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -727,6 +780,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">24.4</span><span class="qttl">可轉債綜合計算<small>(a)~(e) 比率、價格、溢價、價值、股價變動</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Wilder 可轉債發行 $2M、票面 3%、每張可轉 <span class="g">18.4</span> 股,股價 <span class="g">$34.86</span>。求 (a) 轉換比率 (b) 轉換價格 (c) 轉換溢價 (d) 轉換價值 (e) 股價上漲 $2 後的轉換價值。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
         <ol class="steps">
           <li><b>(a)</b> 轉換比率 = <span class="num">18.4</span></li>
@@ -742,6 +797,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">24.5</span><span class="qttl">認股權證最低價值<small>股價 $71,履約價 $64,每張換 3 股</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">認股權證持有人可用履約價 <span class="g">$64</span> 購入股票,目前股價 <span class="g">$71</span>,每張權證可換 <span class="g">3</span> 股。求權證的最低價值。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>權證最低(內含)值</b> =(股價 − 履約價)× 每張換股數,若為負則 = 0。</div></div>
       <div class="blk"><span class="lbl formula">公式</span><div class="fbox">最低值 = max( S − X, 0 ) × 換股數</div></div>
@@ -754,6 +811,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">24.6</span><span class="qttl">哪個情境較合理<small>比較可轉債市價與其直債價值(底線)</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">比較兩個情境下可轉債的市價與其直債價值(straight bond value),判斷哪一個情境較合理。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">可轉債市價有<b>下限</b> = 直債價值(straight bond value)與轉換價值中較高者。市價低於直債價值是套利機會,不應持續存在。</div></div>
       <div class="blk"><span class="lbl steps">判斷</span>
@@ -774,6 +833,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">26.2</span><span class="qttl">期末現金與流動資產<small>由現金流量推期末現金;再由流動負債推流動資產</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">由公司的權益、長期負債與淨營運資金等資料,計算期末現金餘額;再由流動負債推算流動資產。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
         <ol class="steps">
           <li>期末現金 = 8,300 + 14,735 − 18,440 − 2,850 = <span class="num">$1,745</span></li>
@@ -786,6 +847,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">26.5</span><span class="qttl">應收帳款收現排程<small>Morning Jolt;比較 45/60/30 天收款政策</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Morning Jolt 期初應收 <span class="g">$335</span>,四季銷貨 <span class="g">750 / 810 / 890 / 980</span>。分別計算 45 天、60 天、30 天收款政策下各季的現金收現。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>45 天</b> → 本季收一半 + 上季餘額;<b>60 天</b> → 本季收 1/3;<b>30 天</b> → 本季收 2/3。期初 AR=335,各季銷貨 Q1~Q4 = 750/810/890/980。</div></div>
       <div class="blk"><span class="lbl steps">各政策每季收現</span>
@@ -803,6 +866,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">26.6</span><span class="qttl">營運循環與現金循環<small>Newk;由平均存貨/AR/AP 與 COGS/銷貨計算</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Newk 公司:平均存貨、應收、應付分別約 <span class="g">14,025 / 6,203.5 / 8,535</span>,COGS <span class="g">79,218</span>、銷貨 <span class="g">143,187</span>。求營運循環與現金循環(天數)。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>營運循環</b> = 存貨期間 + 應收期間。<b>現金循環</b> = 營運循環 − 應付期間。期間 = 平均餘額 / 每日成本(或銷貨)。</div></div>
       <div class="blk"><span class="lbl formula">公式</span>
@@ -825,6 +890,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">26.8</span><span class="qttl">現金支出排程<small>Bandon Pine;採購=次季銷貨 75%,60 天付款,工資=銷貨 20%</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Bandon Pine 的採購 = 次季銷貨的 <span class="g">75%</span>,付款期 <span class="g">60</span> 天,工資為銷貨的 <span class="g">20%</span>,另有固定長期融資支出 <span class="g">110</span>/季。求各季現金總支出。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">採購 = 次季銷貨 × 75%。60 天付款 → 本季付當季 1/3 + 上季 2/3。再加工資(銷貨 20%)與長期融資固定支出。</div></div>
       <div class="blk"><span class="lbl steps">各季支出彙整(單位同題)</span>
@@ -843,6 +910,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">26.10</span><span class="qttl">現金預算<small>Nashville;期初現金 $125,000,收款 35% 當月+60% 次月(5% 倒帳)</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Nashville Nougats 期初現金 <span class="g">$125,000</span>,收款:當月 <span class="g">35%</span>、次月 <span class="g">60%</span>、<span class="g">5%</span> 永不回收;採購於次月付款。3 月銷貨 245,300、採購 149,300。求 4–6 月現金預算與期末現金。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">收款:當月 35% + 次月 60%(5% 永不回收)。採購於次月付款。期末現金 = 期初 + 收款 − 支出。</div></div>
       <div class="blk"><span class="lbl steps">三個月排程(3 月銷貨 245,300、採購 149,300)</span>
@@ -865,6 +934,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">29.1</span><span class="qttl">最低綜效<small>合併後價值 $197M,兩家獨立合計 $178M</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司願出 <span class="g">$197M</span> 收購一家獨立價值 <span class="g">$178M</span> 的公司。要使收購划算,最少需要多少綜效?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>綜效</b> = 合併後價值 −(兩家獨立價值之和)。要使併購划算,綜效至少要 ≥ 支付溢價。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -876,6 +947,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">29.2</span><span class="qttl">購買法合併資產負債表<small>X 以 $180,000 長期負債收購 Y;Y 資產 FMV $135,000</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Firm X 以發行 <span class="g">$180,000</span> 長期負債(每股 <span class="g">$20</span>)收購 Firm Y。Y 資產公允價值 <span class="g">$135,000</span>。用購買法編製合併後資產負債表,並計算商譽。</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>購買法</b>:被併方資產以<b>公允價值(FMV)</b>入帳,收購價超過 FMV 的部分認列為<b>商譽</b>。</div></div>
       <div class="blk"><span class="lbl formula">公式</span><div class="fbox">商譽 = 收購價 − 取得淨資產 FMV</div></div>
@@ -893,6 +966,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">29.5</span><span class="qttl">現金 vs 股票收購的成本與 NPV<small>Penn 併 Teller;綜效 = 永續 1.45M/0.10</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Penn 收購 Teller,綜效為永續現金流 <span class="g">$1.45M</span>/年、折現率 <span class="g">10%</span>。Penn 可付 <span class="g">$44.5M</span> 現金或給合併後公司 <span class="g">40%</span> 股權。(a) 兩方案成本 (b) 各自 NPV (c) 該選哪個?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box"><b>現金收購成本</b> = 付出現金。<b>股票收購成本</b> = 給對方的股權比例 × 合併後總價值。NPV = 對買方而言被併方價值 − 成本。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -911,6 +986,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">29.6</span><span class="qttl">換股併購的 EPS 與本益比<small>Bread 併 Butter;1 股 Butter 換 3 股 Bread</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Bread(本益比 <span class="g">7.2</span>、<span class="g">73,000</span> 股、盈餘 <span class="g">$210k</span>)與 Butter(本益比 <span class="g">14.4</span>、<span class="g">146,000</span> 股、盈餘 <span class="g">$630k</span>)合併,每 3 股 Bread 換 1 股 Butter。(a) 合併後 EPS、股價、本益比 (b) Butter 須相信多少綜效才值得?</div></div>
       <div class="blk"><span class="lbl concept">觀念</span>
         <div class="concept-box">換股後 EPS = 合併後總盈餘 / 合併後總股數。若市場認為<b>無綜效</b>,合併後市值 = 兩家市值和,本益比會被「攤平」。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
@@ -927,6 +1004,8 @@ C = [ p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span> ] / 
   <details class="card" open>
     <summary><span class="qno">29.8</span><span class="qttl">現金 vs 股票:NPV、每股價、溢價<small>Firm B 6,400股@$53;Firm T 1,500股@$19;綜效 $17,000</small></span></summary>
     <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Firm B(<span class="g">6,400</span> 股 @ <span class="g">$53</span>)收購 Firm T(<span class="g">1,500</span> 股 @ <span class="g">$19</span>),綜效 <span class="g">$17,000</span>。(a) 每股付 <span class="g">$23</span> 現金的 NPV (b) 現金收購後每股價 (c) 溢價 (d) 改用 1 換 2 換股後每股價 (e) 換股的 NPV。</div></div>
       <div class="blk"><span class="lbl steps">解題步驟</span>
         <ol class="steps">
           <li><b>(a) $23 現金</b>:NPV =(28,500 + 17,000)− (1,500×23=34,500) = <span class="num">$11,000</span></li>
