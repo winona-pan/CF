@@ -3,632 +3,1592 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>公司理財 期末複習 · Corporate Finance Review</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<title>公司理財 · 期末複習</title>
 <style>
 :root{
-  --ink:#16202A; --ink-2:#22303D; --paper:#FBF9F4; --paper-2:#F2EEE4;
-  --teal:#1F6F5C; --teal-d:#185647; --gold:#C9A227; --gold-soft:#E7CF7E;
-  --red:#B23A48; --green-ok:#2E7D5B;
-  --line:#DED7C7; --muted:#6B7480; --rail-line:#2C3A47;
-  --shadow:0 1px 0 rgba(0,0,0,.04), 0 6px 24px -12px rgba(22,32,42,.28);
-  --r:14px; --rail-w:248px;
+  --ink:#15233B; --ink-soft:#42526B; --line:#D9DDE3;
+  --paper:#ECEFF3; --card:#FFFFFF;
+  --accent:#0E6E66; --accent-bg:#E4F1EF;
+  --red:#A6362C; --red-bg:#F8EAE7;
+  --gold:#9C7415; --gold-bg:#FAF1DC;
+  --calc:#161D26; --calc-2:#222C39; --key:#2E3A49; --lcd:#1c8a64;
+  --serif:Georgia,"Noto Serif TC","Songti TC",serif;
+  --sans:-apple-system,"Segoe UI","Noto Sans TC",system-ui,sans-serif;
+  --mono:"SF Mono",ui-monospace,"Cascadia Code",Consolas,monospace;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--paper);color:var(--ink);
-  font-family:Inter,system-ui,-apple-system,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
-  line-height:1.55;-webkit-font-smoothing:antialiased;}
-h1,h2,h3,.disp{font-family:Fraunces,Georgia,"Noto Serif TC",serif;}
-.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;}
-a{color:var(--teal-d)}
-button{font-family:inherit;cursor:pointer}
-:focus-visible{outline:2.5px solid var(--gold);outline-offset:2px;border-radius:6px}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);
+  line-height:1.7;-webkit-font-smoothing:antialiased}
+.eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--accent);font-weight:700}
+h1,h2,h3,h4{font-family:var(--sans);line-height:1.25;letter-spacing:-.01em}
+code,.mono{font-family:var(--mono)}
 
-/* layout */
-.app{display:flex;min-height:100vh}
-.rail{width:var(--rail-w);flex:0 0 var(--rail-w);background:var(--ink);color:#E9EEF2;
-  position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;}
-.brand{padding:22px 20px 16px;border-bottom:1px solid var(--rail-line)}
-.brand .kk{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft);font-weight:600}
-.brand h1{font-size:21px;margin:6px 0 2px;font-weight:600;color:#fff;line-height:1.2}
-.brand .sub{font-size:12px;color:#9DAAB6}
-.navsec{padding:14px 12px 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7E8B97}
-.nav{list-style:none;margin:0;padding:0 10px}
-.nav li{margin:2px 0}
-.nav button{width:100%;text-align:left;background:none;border:0;color:#CBD5DE;padding:9px 12px;border-radius:10px;
-  font-size:14px;font-weight:500;display:flex;align-items:center;gap:10px;transition:background .15s,color .15s}
-.nav button .ic{width:20px;text-align:center;font-size:15px;opacity:.85}
-.nav button:hover{background:#1E2B36;color:#fff}
-.nav button.on{background:var(--teal);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-.nav .badge{margin-left:auto;font-size:11px;background:#26333F;color:#AFC4BD;border-radius:20px;padding:1px 8px;font-weight:600}
-.nav button.on .badge{background:rgba(255,255,255,.18);color:#fff}
-.unitnums{padding:6px 10px 18px}
-.unitnums .ti{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7E8B97;padding:10px 12px 6px}
-.unitnums button{width:100%;text-align:left;background:none;border:0;color:#C3D0DA;padding:7px 12px;border-radius:9px;
-  display:flex;gap:10px;align-items:baseline;font-size:13px}
-.unitnums button:hover{background:#1E2B36;color:#fff}
-.unitnums button.on{background:#16323B;color:#fff}
-.unitnums .n{font-family:"IBM Plex Mono",monospace;color:var(--gold-soft);font-size:12px;min-width:34px}
-.railfoot{margin-top:auto;padding:14px 16px;border-top:1px solid var(--rail-line);font-size:11px;color:#7E8B97}
+/* ---------- HERO ---------- */
+.hero{background:linear-gradient(160deg,#15233B 0%,#1E3350 60%,#234063 100%);color:#fff;
+  padding:64px 24px 40px}
+.hero-in{max-width:980px;margin:0 auto}
+.hero h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:800;margin:.3em 0 .15em}
+.hero h1 .zh{display:block;font-weight:800}
+.hero h1 .en{display:block;font-size:.42em;letter-spacing:.18em;color:#9FC6E4;font-weight:600;
+  text-transform:uppercase;margin-top:.5em}
+.hero p.lead{color:#C6D6E8;max-width:620px;font-size:1.02rem}
+.exam-rules{margin-top:26px;display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.rule{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:12px;
+  padding:14px 16px}
+.rule b{font-family:var(--sans);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#7FB0D8;display:block;margin-bottom:4px}
+.rule span{font-size:.92rem;color:#E7EEF6}
 
-/* main */
-.main{flex:1;min-width:0;display:flex;flex-direction:column}
-.topbar{display:none}
-.wrap{max-width:980px;width:100%;margin:0 auto;padding:34px 30px 90px}
-.pagehead{margin-bottom:22px}
-.pagehead .ey{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600}
-.pagehead h2{font-size:30px;margin:6px 0 4px;font-weight:600}
-.pagehead p{margin:0;color:var(--muted);font-size:14.5px;max-width:62ch}
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(21,35,59,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.12)}
+.nav-in{max-width:1080px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:10px 16px;
+  scrollbar-width:thin}
+nav a{font-family:var(--sans);font-size:.84rem;font-weight:600;color:#BcD0E6;color:#BBD0E6;
+  text-decoration:none;white-space:nowrap;padding:7px 13px;border-radius:20px;transition:.15s}
+nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+nav a.tool{color:#FFD37A}
 
-/* cards */
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin:14px 0;box-shadow:var(--shadow)}
-.card .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
-  padding:2px 9px;border-radius:20px;margin-bottom:10px}
-.tag.def{background:#EAF3EF;color:var(--teal-d)}
-.tag.concept{background:#FBF1D8;color:#876C13}
-.tag.formula{background:#E7EDF2;color:#2E4456}
-.card h3{margin:0 0 2px;font-size:18px;font-weight:600}
-.card .zhterm{font-size:14px;color:var(--muted);font-weight:500;margin-bottom:8px}
-.lang{display:grid;grid-template-columns:1fr;gap:10px}
-.lang .en,.lang .zh{font-size:14.5px}
-.lang .lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700;display:block;margin-bottom:2px}
-.lang .zh{padding-top:10px;border-top:1px dashed var(--line)}
-.lang .en p,.lang .zh p{margin:0 0 8px}
-.lang .en p:last-child,.lang .zh p:last-child{margin-bottom:0}
-.lang .zh{line-height:1.72}
-.unit-intro .en p,.unit-intro .zh p{margin:8px 0 0}
-.example{margin-top:14px;background:#FBF1D8;border:1px solid #E8D49A;border-left:4px solid var(--gold);border-radius:10px;padding:12px 16px}
-.example .exlab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#876C13;font-weight:700;margin-bottom:6px}
-.example p{margin:0 0 7px;font-size:13.8px;line-height:1.7;color:#4a3d12}
-.example p:last-child{margin-bottom:0}
-.badge-pin{float:right;font-size:11px;color:var(--gold);font-weight:700}
-.formula-slip{background:var(--ink);color:#EAF0F4;border-radius:10px;padding:14px 16px;margin:10px 0;overflow-x:auto}
-.formula-slip .katex{font-size:1.15em;color:#fff}
-.formula-raw{font-family:"IBM Plex Mono",monospace;color:#EAF0F4;font-size:14px}
-.vars{font-size:12.5px;color:var(--muted);margin-top:8px}
-.vars .mono{color:var(--ink-2)}
-.unit-intro{background:linear-gradient(180deg,#fff, #FCFAF5);border:1px solid var(--line);border-left:4px solid var(--teal);
-  border-radius:var(--r);padding:18px 22px;margin-bottom:6px}
-.unit-intro .lec{font-size:12px;color:var(--teal);font-weight:600;letter-spacing:.05em}
-.unit-intro h2{font-size:24px;margin:6px 0 8px}
-.unit-intro .ti-zh{color:var(--muted);font-weight:500;font-size:16px}
-.unit-intro p{font-size:14px;margin:8px 0 0}
-.unit-intro p.zh{color:#3c4650}
+/* ---------- LAYOUT ---------- */
+main{max-width:980px;margin:0 auto;padding:8px 20px 80px}
+section{padding-top:46px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--ink);
+  padding-bottom:10px;margin-bottom:8px;flex-wrap:wrap}
+.sec-head .ch{font-family:var(--mono);font-size:1.6rem;font-weight:700;color:var(--accent)}
+.sec-head h2{font-size:1.5rem;margin:0;font-weight:800}
+.sec-head .tag{font-family:var(--sans);font-size:.78rem;color:var(--ink-soft)}
 
-/* generic ui bits */
-.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.btn{border:1px solid var(--teal);background:var(--teal);color:#fff;border-radius:10px;padding:10px 18px;font-size:14px;font-weight:600;transition:filter .15s,transform .05s}
-.btn:hover{filter:brightness(1.06)} .btn:active{transform:translateY(1px)}
-.btn.ghost{background:#fff;color:var(--teal-d);border-color:var(--line)}
-.btn.ghost:hover{background:var(--paper-2)}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:#3a2f06}
-.btn.danger{background:#fff;color:var(--red);border-color:#E4C2C6}
-.btn.sm{padding:6px 12px;font-size:13px}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
-.seg button{background:none;border:0;padding:8px 14px;font-size:13.5px;font-weight:600;color:var(--muted)}
-.seg button.on{background:var(--teal);color:#fff}
-.field{margin:14px 0}
-.field>.lab{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
-select{font-family:inherit;font-size:14px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);min-width:220px}
+/* ---------- PROBLEM CARD ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:20px 0;
+  overflow:hidden;box-shadow:0 1px 3px rgba(21,35,59,.05)}
+.card>summary{list-style:none;cursor:pointer;padding:16px 20px;display:flex;gap:12px;
+  align-items:baseline;flex-wrap:wrap}
+.card>summary::-webkit-details-marker{display:none}
+.card>summary::after{content:"▾";margin-left:auto;color:var(--ink-soft);font-size:.9rem;
+  transition:transform .2s}
+.card[open]>summary::after{transform:rotate(180deg)}
+.card>summary:hover{background:#FAFBFC}
+.qno{font-family:var(--mono);font-weight:700;background:var(--ink);color:#fff;border-radius:7px;
+  padding:3px 9px;font-size:.82rem;flex:none}
+.qttl{font-family:var(--sans);font-weight:700;font-size:1.02rem}
+.qttl small{display:block;font-weight:400;color:var(--ink-soft);font-size:.84rem;
+  font-family:var(--serif);margin-top:2px}
+.body{padding:4px 20px 22px;border-top:1px solid var(--line)}
 
-/* quiz */
-.quizcard{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-.quizcard .qhead{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--line);background:#FCFAF5}
-.qhead .meta{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.04em}
-.qhead .diffpill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;text-transform:uppercase;letter-spacing:.06em}
-.diffpill.basic{background:#EAF3EF;color:var(--teal-d)} .diffpill.hard{background:#F6E6E8;color:var(--red)}
-.qhead .star{margin-left:auto;background:none;border:0;font-size:22px;line-height:1;color:#CDB979;padding:2px 4px}
-.qhead .star.on{color:var(--gold)}
-.qbody{padding:20px}
-.qtext{font-size:17px;font-weight:600;margin:0 0 16px;line-height:1.45}
-.opts{display:flex;flex-direction:column;gap:10px}
-.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;background:#fff;border:1.5px solid var(--line);
-  border-radius:12px;padding:13px 15px;font-size:15px;color:var(--ink);transition:border-color .12s,background .12s}
-.opt:hover:not(:disabled){border-color:var(--teal);background:#FAFCFB}
-.opt .key{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--muted);min-width:18px}
-.opt.correct{border-color:var(--green-ok);background:#EDF7F0}
-.opt.correct .key{color:var(--green-ok)}
-.opt.wrong{border-color:var(--red);background:#FBEFF0}
-.opt.wrong .key{color:var(--red)}
-.opt.dim{opacity:.6}
-.explain{margin-top:16px;border-radius:12px;padding:14px 16px;font-size:14.5px;line-height:1.6}
-.explain.ok{background:#EDF7F0;border:1px solid #BFE0CC}
-.explain.no{background:#FBEFF0;border:1px solid #EBC9CD}
-.explain .verdict{font-weight:700;font-family:Fraunces,serif;font-size:16px;margin-bottom:4px;display:flex;gap:8px;align-items:center}
-.explain.ok .verdict{color:var(--green-ok)} .explain.no .verdict{color:var(--red)}
-.explain .lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
-.quizfoot{display:flex;gap:10px;align-items:center;padding:16px 20px;border-top:1px solid var(--line);background:#FCFAF5}
-.progressbar{height:7px;background:var(--paper-2);border-radius:20px;overflow:hidden;margin:0 0 18px}
-.progressbar>i{display:block;height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));border-radius:20px;transition:width .3s}
-.countline{font-size:13px;color:var(--muted);margin-bottom:6px;font-weight:600}
+/* blocks */
+.blk{margin:16px 0}
+.lbl{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;display:inline-block;margin-bottom:6px;padding:2px 8px;border-radius:5px}
+.lbl.concept{color:var(--accent);background:var(--accent-bg)}
+.lbl.formula{color:var(--ink);background:#EBEEF2}
+.lbl.steps{color:var(--ink);background:#EBEEF2}
+.lbl.note{color:var(--red);background:var(--red-bg)}
+.concept-box{border-left:3px solid var(--accent);padding-left:14px;color:var(--ink-soft)}
+.concept-box b{color:var(--ink)}
+.lbl.q{color:#fff;background:var(--ink)}
+.qbox{background:#F1F3F6;border:1px solid var(--line);border-radius:9px;padding:11px 15px;
+  color:var(--ink);font-size:.96rem;line-height:1.75}
+.qbox .g{font-family:var(--mono);font-size:.9rem;color:var(--accent);background:#fff;
+  border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin:1px;display:inline-block}
+.fbox{background:#F6F8FA;border:1px solid var(--line);border-radius:9px;padding:8px 10px;
+  font-family:var(--mono);font-size:.92rem;overflow-x:auto}
+.fbox .var{color:var(--accent);font-weight:600}
+.fline{padding:7px 12px;border-left:3px solid var(--accent);background:#fff;border-radius:6px;
+  margin:6px 0;line-height:1.6;overflow-x:auto}
+.fvars{font-family:var(--sans);font-size:.85rem;color:var(--ink-soft);padding:4px 12px;line-height:1.7}
+.fvars .var{color:var(--accent);font-weight:600;font-family:var(--mono)}
+.qbox-en{margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);
+  font-family:Georgia,'Times New Roman',serif;font-size:.9rem;color:var(--ink-soft);
+  line-height:1.7;font-style:italic}
+.qbox-en b{color:var(--ink);font-style:normal}
+ol.steps{margin:0;padding-left:22px}
+ol.steps li{margin:7px 0}
+.num{font-family:var(--mono);background:#EBEEF2;border-radius:4px;padding:0 5px;font-size:.92em}
 
-/* stat tiles */
-.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:8px 0 24px}
-.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
-.tile .n{font-family:Fraunces,serif;font-size:30px;font-weight:600;line-height:1}
-.tile .l{font-size:12.5px;color:var(--muted);margin-top:6px;font-weight:500}
-.tile.accent{background:var(--ink);color:#fff} .tile.accent .l{color:#A9B7C2}
-.tile.accent .n{color:#fff}
-.uprog{margin:10px 0}
-.uprog .top{display:flex;justify-content:space-between;font-size:13.5px;font-weight:600;margin-bottom:5px}
-.uprog .top .pct{color:var(--muted);font-weight:600;font-family:"IBM Plex Mono",monospace;font-size:12.5px}
-.bar{height:9px;background:var(--paper-2);border-radius:20px;overflow:hidden}
-.bar>i{display:block;height:100%;background:var(--teal);border-radius:20px}
+/* answer */
+.ans{background:var(--gold-bg);border:1px solid #E8D29B;border-left:4px solid var(--gold);
+  border-radius:9px;padding:11px 15px;margin-top:14px;font-family:var(--sans);font-weight:600}
+.ans .lbl-a{color:var(--gold);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  display:block;margin-bottom:3px}
+.ans .val{font-family:var(--mono);color:var(--ink);font-size:1.05rem}
 
-/* empty / notice */
-.empty{text-align:center;padding:46px 20px;color:var(--muted)}
-.empty .big{font-size:40px;margin-bottom:8px}
-.empty h3{font-size:19px;color:var(--ink);margin:0 0 6px}
-.notice{background:#FBF1D8;border:1px solid #E8D49A;border-radius:12px;padding:12px 16px;font-size:13.5px;color:#6E5710;margin:12px 0}
-.reviewlist{display:flex;flex-direction:column;gap:10px}
-.revitem{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 15px;text-align:left;width:100%}
-.revitem:hover{border-color:var(--teal)}
-.revitem .ix{font-family:"IBM Plex Mono",monospace;color:var(--muted);font-size:12px;min-width:38px}
-.revitem .qt{flex:1;font-size:14px;font-weight:500}
-.revitem .mk{font-size:18px}
-.scrim{display:none}
+/* calculator */
+.calc{background:var(--calc);border-radius:12px;padding:14px 16px;margin:14px 0;color:#D7E0EA}
+.calc-h{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:#FFD37A;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.calc-h::before{content:"⌨";font-size:1rem}
+.calc .mode{font-family:var(--mono);font-size:.78rem;color:#7FE3B6;background:var(--calc-2);
+  border-radius:5px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+.keys{display:flex;flex-wrap:wrap;gap:5px;align-items:center;line-height:2.2}
+.k{font-family:var(--mono);font-size:.82rem;background:var(--key);border:1px solid #3c4858;
+  border-bottom:2px solid #11161d;border-radius:6px;padding:2px 8px;color:#EAF1F8;white-space:nowrap}
+.k.op{background:#1d2731;color:#9bb0c6}
+.k.eq{background:var(--lcd);border-color:#0f6b4e;color:#fff}
+.keys .arrow{color:#5d6e82}
+.calc .res{font-family:var(--mono);font-size:.86rem;color:#7FE3B6;margin-top:8px;
+  border-top:1px dashed #34404e;padding-top:7px}
 
-/* mobile */
-@media (max-width:860px){
-  .rail{position:fixed;left:0;top:0;transform:translateX(-100%);transition:transform .25s;z-index:40;width:84%;max-width:300px}
-  .rail.open{transform:none}
-  .scrim{display:none;position:fixed;inset:0;background:rgba(10,16,22,.5);z-index:30}
-  .scrim.show{display:block}
-  .topbar{display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:20;background:var(--ink);color:#fff;padding:12px 16px}
-  .topbar .hamb{background:none;border:1px solid #38444F;color:#fff;border-radius:9px;padding:6px 11px;font-size:17px}
-  .topbar .tt{font-family:Fraunces,serif;font-weight:600;font-size:16px}
-  .wrap{padding:22px 18px 90px}
-  .pagehead h2{font-size:25px}
+table.mini{border-collapse:collapse;font-family:var(--mono);font-size:.84rem;margin:10px 0;width:100%}
+table.mini th,table.mini td{border:1px solid var(--line);padding:5px 9px;text-align:right}
+table.mini th{background:#EBEEF2;font-family:var(--sans);font-size:.78rem}
+table.mini td:first-child,table.mini th:first-child{text-align:left}
+
+.callout{background:var(--accent-bg);border-radius:10px;padding:14px 16px;margin:14px 0;
+  font-size:.94rem;color:#0a4f49}
+.callout b{color:var(--accent)}
+
+/* interpolation tool */
+.tool{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0}
+.tool h3{margin:0 0 6px;font-size:1.15rem}
+.tool .io{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.tool input{font-family:var(--mono);font-size:1.1rem;width:130px;padding:9px 12px;border:1px solid var(--line);
+  border-radius:8px;text-align:center}
+.tool input:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.tool button{font-family:var(--sans);font-weight:700;background:var(--ink);color:#fff;border:0;
+  border-radius:8px;padding:10px 18px;cursor:pointer;font-size:.95rem}
+.tool button:hover{background:#22344f}
+#interpOut{margin-top:14px}
+.work{font-family:var(--mono);font-size:.9rem;background:#F6F8FA;border:1px solid var(--line);
+  border-radius:9px;padding:12px 14px;line-height:2}
+.work .hl{background:#FAF1DC;border-radius:3px;padding:0 4px;font-weight:700}
+.work .big{color:var(--accent);font-size:1.15rem;font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-family:var(--sans);font-size:.82rem;background:#EBEEF2;border-radius:16px;padding:4px 12px;
+  cursor:pointer;border:1px solid var(--line)}
+.chip:hover{background:var(--accent-bg);color:var(--accent)}
+
+.totop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;
+  background:var(--ink);color:#fff;border:0;font-size:1.1rem;cursor:pointer;opacity:0;
+  transition:.25s;z-index:40}
+.totop.show{opacity:.92}
+footer{max-width:980px;margin:0 auto;padding:30px 20px 60px;color:var(--ink-soft);font-size:.86rem;
+  border-top:1px solid var(--line)}
+@media(max-width:560px){
+  .hero{padding:44px 18px 30px} main{padding:8px 14px 60px}
+  .card>summary{padding:14px} .body{padding:4px 14px 18px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media print{
+  nav,.totop{display:none} .card{break-inside:avoid} .card[open] .body,.body{display:block!important}
+  .hero{background:#15233B!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 </style>
 </head>
 <body>
-<div class="app">
-  <!-- SIDEBAR -->
-  <aside class="rail" id="rail">
-    <div class="brand">
-      <div class="kk">Final Review</div>
-      <h1>公司理財</h1>
-      <div class="sub">Corporate Finance · 期末地毯式複習</div>
-    </div>
-    <div class="navsec">功能</div>
-    <ul class="nav" id="mainnav">
-      <li><button data-view="learn" class="on"><span class="ic">📖</span>學習</button></li>
-      <li><button data-view="quiz"><span class="ic">✏️</span>測驗</button></li>
-      <li><button data-view="review"><span class="ic">⭐</span>錯題複習<span class="badge" id="bdg-review">0</span></button></li>
-      <li><button data-view="todo"><span class="ic">📝</span>未作答<span class="badge" id="bdg-todo">200</span></button></li>
-      <li><button data-view="progress"><span class="ic">📊</span>進度</button></li>
-    </ul>
-    <div class="unitnums" id="unitnav"></div>
-    <div class="railfoot">共 8 單元 · 200 題（基本 100 / 中上 100）</div>
-  </aside>
-  <div class="scrim" id="scrim"></div>
 
-  <!-- MAIN -->
-  <div class="main">
-    <div class="topbar">
-      <button class="hamb" id="hamb" aria-label="開啟選單">☰</button>
-      <span class="tt" id="topTitle">學習</span>
+<header class="hero">
+  <div class="hero-in">
+    <span class="eyebrow">Final Exam Review · Ross 公司理財</span>
+    <h1><span class="zh">公司理財 期末複習</span>
+        <span class="en">Cost of Capital · APV · Dividends · Options · M&amp;A</span></h1>
+    <p class="lead">涵蓋 Ch13 / 18 / 19 / 22 / 23 / 24 / 26 / 29 全部指定題。每題附「觀念 → 公式 → 計算步驟 → Casio FC‑100V 按法 → 答案」。</p>
+    <div class="exam-rules">
+      <div class="rule"><b>數值精度</b><span>所有答案取到小數點後 <strong>4 位</strong>;中間值若超過 4 位,依老師規定四捨五入。</span></div>
+      <div class="rule"><b>考試提供</b><span>Black‑Scholes 公式 + 標準常態分配 <strong>「全表」</strong>(N(x) 正負兩張)。</span></div>
+      <div class="rule"><b>需自行處理</b><span>N(d₁)、N(d₂) 要用<strong>線性內插</strong>查表 → 見下方互動工具教學。</span></div>
     </div>
-    <div class="wrap" id="view"></div>
   </div>
-</div>
+</header>
 
-<script src="data.js"></script>
+<nav><div class="nav-in">
+  <a class="tool" href="#interp">📐 內插教學</a>
+  <a href="#ch13">Ch13 WACC</a>
+  <a href="#ch18">Ch18 APV</a>
+  <a href="#ch19">Ch19 股利</a>
+  <a href="#ch22">Ch22 選擇權</a>
+  <a href="#ch23">Ch23 員工選擇權</a>
+  <a href="#ch24">Ch24 可轉債</a>
+  <a href="#ch26">Ch26 營運資金</a>
+  <a href="#ch29">Ch29 併購</a>
+  <a class="tool" href="#cheat">📋 公式速查</a>
+</div></nav>
+
+<main>
+
+<!-- ========== 線性內插 ========== -->
+<section id="interp">
+  <div class="sec-head"><span class="ch">📐</span><h2>線性內插查 N(x)</h2>
+    <span class="tag">Black‑Scholes 必用 · 試算工具</span></div>
+
+  <div class="callout">
+    <b>為什麼要內插?</b> 常態分配表只列到小數第 2 位(如 N(0.62)、N(0.63)),
+    但你算出的 d₁、d₂ 通常有 4 位(如 0.6278)。
+    內插就是「在兩個表值之間,照比例抓中間的值」。
+  </div>
+
+  <div class="blk">
+    <span class="lbl formula">內插公式</span>
+    <div class="fbox">
+N(x) = N(x<span class="var">₀</span>) + <span class="var">w</span> × [ N(x<span class="var">₁</span>) − N(x<span class="var">₀</span>) ]
+
+  x<span class="var">₀</span> = 把 x 無條件捨去到小數第 2 位 (下界)
+  x<span class="var">₁</span> = x₀ + 0.01                       (上界)
+  <span class="var">w</span>  = (x − x₀) / 0.01  = x 的第 3、4 位小數 (權重 0~1)
+    </div>
+  </div>
+
+  <div class="blk">
+    <span class="lbl concept">課本範例</span>
+    <div class="concept-box">
+      正值:<code>N(0.6278) = N(0.62) + 0.78×[N(0.63)−N(0.62)] = 0.7324 + 0.78×(0.7357−0.7324) = 0.7350</code><br>
+      負值:<code>N(−0.1234) = N(−0.12) − 0.34×[N(−0.12)−N(−0.13)] = 0.4522 − 0.34×(0.4522−0.4483) = 0.4509</code>
+      <br><b>小技巧:</b>負值也能用對稱性 <code>N(−x) = 1 − N(x)</code> 反查正表,結果一樣。
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>N(x) 內插試算機</h3>
+    <p style="margin:.2em 0;color:var(--ink-soft);font-size:.92rem">輸入 x(−4 ~ 4),工具會示範「找上下界 → 算權重 → 加權平均」每一步。</p>
+    <div class="io">
+      <input id="xin" type="number" step="0.0001" value="0.6278" />
+      <button onclick="doInterp()">內插查表</button>
+    </div>
+    <div class="chips">
+      <span class="chip" onclick="setX(0.0439)">d₁=0.0439</span>
+      <span class="chip" onclick="setX(-0.2274)">d₂=−0.2274</span>
+      <span class="chip" onclick="setX(0.3750)">0.3750</span>
+      <span class="chip" onclick="setX(0.8457)">0.8457</span>
+      <span class="chip" onclick="setX(-0.3394)">−0.3394</span>
+      <span class="chip" onclick="setX(0.4196)">0.4196</span>
+    </div>
+    <div id="interpOut"></div>
+  </div>
+</section>
+
+
+
+<!-- ========== Ch13 WACC ========== -->
+<section id="ch13">
+  <div class="sec-head"><span class="ch">13</span><h2>資金成本與 WACC</h2>
+    <span class="tag">Cost of Capital · CAPM · 加權平均資金成本</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">13.1</span><span class="qttl">用 CAPM 求權益成本</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司普通股的 β 係數為 <span class="g">1.07</span>。目前無風險利率為 <span class="g">3.4%</span>,市場投資組合的預期報酬率為 <span class="g">11%</span>。請以資本資產定價模型(CAPM)計算該公司的權益資金成本 R<sub>E</sub>。
+        <div class="qbox-en"><b>(English)</b> The company's common stock has a beta of 1.07. The risk-free rate is 3.4 percent and the expected return on the market is 11 percent. Using the CAPM, what is the company's cost of equity capital?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>CAPM</b> 說明:股東願意承擔風險,因此要求的報酬 = 完全無風險時能拿到的報酬(R<sub>f</sub>),再加上「承擔這檔股票系統風險」的補償。補償 = β ×(市場風險溢酬)。<b>β</b> 衡量個股報酬相對整體市場波動的敏感度。市場風險溢酬 = 市場報酬 − 無風險利率。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">R<span class="var">E</span> = R<span class="var">f</span> + β × ( R<span class="var">m</span> − R<span class="var">f</span> )</div>
+          <div class="fvars">R<span class="var">f</span> = 無風險利率 · R<span class="var">m</span> = 市場預期報酬 · β = 系統風險係數</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>先算市場風險溢酬</b>:R<sub>m</sub> − R<sub>f</sub> = 11% − 3.4% = <span class="num">7.6%</span></li>
+          <li><b>乘上 β</b>:1.07 × 7.6% = <span class="num">8.132%</span></li>
+          <li><b>加回無風險利率</b>:R<sub>E</sub> = 3.4% + 8.132% = <span class="num">11.532%</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">3.4</span><span class="k op">+</span><span class="k">1.07</span><span class="k op">×</span><span class="k">(</span><span class="k">11</span><span class="k op">−</span><span class="k">3.4</span><span class="k">)</span><span class="k eq">=</span></div>
+        <div class="res">顯示 11.532</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">R<sub>E</sub> = 11.5320% ≈ 11.53%</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">13.5</span><span class="qttl">計算加權平均資金成本 WACC</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司的目標資本結構為:權益佔總市值 <span class="g">70%</span>、負債佔 <span class="g">30%</span>。權益資金成本 R<sub>E</sub> = <span class="g">11.3%</span>,稅前負債成本 R<sub>D</sub> = <span class="g">5.9%</span>,公司稅率 T<sub>c</sub> = <span class="g">23%</span>。請計算 WACC。
+        <div class="qbox-en"><b>(English)</b> A firm has a target capital structure of 70 percent equity and 30 percent debt. The cost of equity is 11.3 percent, the pretax cost of debt is 5.9 percent, and the tax rate is 23 percent. What is the company's WACC?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>WACC</b> 是公司整體的資金成本:把權益與負債各自的成本依市值權重加權平均。關鍵:利息可<b>抵稅</b>,實際負擔的是<b>稅後</b> R<sub>D</sub>(1−T<sub>c</sub>);股利不能抵稅,權益成本不打折。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">WACC = (E/V)·R<span class="var">E</span> + (D/V)·R<span class="var">D</span>·(1 − T<span class="var">c</span>)</div>
+          <div class="fvars">E/V = 權益權重 · D/V = 負債權重 · T<span class="var">c</span> = 稅率</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>權益貢獻</b> = 0.70 × 11.3% = <span class="num">7.91%</span></li>
+          <li><b>稅後負債成本</b> = 5.9% × (1−0.23) = 5.9% × 0.77 = <span class="num">4.543%</span></li>
+          <li><b>負債貢獻</b> = 0.30 × 4.543% = <span class="num">1.3629%</span></li>
+          <li><b>相加</b>:WACC = 7.91% + 1.3629% = <span class="num">9.2729%</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">0.7</span><span class="k op">×</span><span class="k">11.3</span><span class="k op">+</span><span class="k">0.3</span><span class="k op">×</span><span class="k">5.9</span><span class="k op">×</span><span class="k">0.77</span><span class="k eq">=</span></div>
+        <div class="res">顯示 9.2729</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">WACC = 9.2729% ≈ 9.27%</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">13.7</span><span class="qttl">由 WACC 反推資本結構權重</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司 WACC = <span class="g">8.4%</span>,權益成本 R<sub>E</sub> = <span class="g">11%</span>,稅前負債成本 R<sub>D</sub> = <span class="g">5.8%</span>,稅率 T<sub>c</sub> = <span class="g">25%</span>。求負債佔總值比 D/V、權益佔總值比 E/V,以及負債權益比 D/E。
+        <div class="qbox-en"><b>(English)</b> A company has a WACC of 8.4 percent, a cost of equity of 11 percent, and a pretax cost of debt of 5.8 percent. The tax rate is 25 percent. Find the firm's debt-to-value ratio (D/V), equity-to-value ratio (E/V), and debt-equity ratio (D/E).</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">WACC 公式有兩個權重,但 E/V + D/V = 1,只剩一個未知數。設 D/V = x,E/V = 1−x,代入解一元一次方程式。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">WACC = (1 − x)·R<span class="var">E</span> + x·R<span class="var">D</span>·(1 − T<span class="var">c</span>)</div>
+          <div class="fline">E/V = 1 − x</div>
+          <div class="fline">D/E = (D/V) ÷ (E/V)</div>
+          <div class="fvars">x = D/V(待解的未知數)</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>設未知數並代入</b>:稅後負債成本 = 5.8%×0.75 = 4.35%<br>8.4 = (1−x)(11) + x(4.35)</li>
+          <li><b>展開化簡</b>:8.4 = 11 − 11x + 4.35x = 11 − 6.65x</li>
+          <li><b>解 x</b>:6.65x = 2.6 → x = 2.6/6.65 = <span class="num">0.3910</span>(D/V)</li>
+          <li><b>其餘權重</b>:E/V = 1 − 0.3910 = <span class="num">0.6090</span>;D/E = 0.3910/0.6090 = <span class="num">0.6420</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">(</span><span class="k">11</span><span class="k op">−</span><span class="k">8.4</span><span class="k">)</span><span class="k op">÷</span><span class="k">(</span><span class="k">11</span><span class="k op">−</span><span class="k">5.8</span><span class="k op">×</span><span class="k">0.75</span><span class="k">)</span><span class="k eq">=</span></div>
+        <div class="res">顯示 0.3910(= D/V);再 0.3910÷0.6090 = 0.6420</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">D/V = 0.3910 · E/V = 0.6090 · D/E = 0.6420</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">13.10</span><span class="qttl">反求稅前負債成本與權益成本</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司目標負債權益比 D/E = <span class="g">0.65</span>,稅率 <span class="g">23%</span>,WACC = <span class="g">10.4%</span>。<b>(a)</b> 若權益成本 R<sub>E</sub> = <span class="g">14%</span>,求稅前負債成本 R<sub>D</sub>。<b>(b)</b> 若已知稅後負債成本為 <span class="g">5.8%</span>,求權益成本 R<sub>E</sub>。
+        <div class="qbox-en"><b>(English)</b> A firm has a target debt-equity ratio of 0.65, a tax rate of 23 percent, and a WACC of 10.4 percent. (a) If the cost of equity is 14 percent, what is the pretax cost of debt? (b) If instead the aftertax cost of debt is 5.8 percent, what is the cost of equity?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">同一條 WACC 公式,已知其他項就能反解任一項。先把 D/E 換權重:D/E=0.65 → 共 1.65 → D/V = 0.65/1.65,E/V = 1/1.65。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">WACC = (E/V)·R<span class="var">E</span> + (D/V)·R<span class="var">D</span>·(1 − T<span class="var">c</span>)</div>
+          <div class="fline">D/V = 0.65 / 1.65 = 0.3939</div>
+          <div class="fline">E/V = 1 / 1.65 = 0.6061</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a) 求稅前 R<sub>D</sub></span>
+        <ol class="steps">
+          <li><b>權重</b>:D/V = <span class="num">0.3939</span>,E/V = <span class="num">0.6061</span></li>
+          <li><b>代入</b>:10.4 = 0.6061×14 + 0.3939×R<sub>D</sub>×0.77 = 8.4848 + 0.30333·R<sub>D</sub></li>
+          <li><b>求解</b>:0.30333·R<sub>D</sub> = 1.9152 → R<sub>D</sub> = <span class="num">6.3137%</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 (b) 求 R<sub>E</sub>(已知稅後負債成本 5.8%)</span>
+        <ol class="steps">
+          <li><b>稅後負債成本已給</b> = 5.8%,直接代入:10.4 = 0.6061·R<sub>E</sub> + 0.3939×5.8</li>
+          <li><b>計算</b>:10.4 = 0.6061·R<sub>E</sub> + 2.2848</li>
+          <li><b>求解</b>:0.6061·R<sub>E</sub> = 8.1152 → R<sub>E</sub> = <span class="num">13.39%</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 稅前 R<sub>D</sub> ≈ 6.31% · (b) R<sub>E</sub> ≈ 13.39%</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">13.13</span><span class="qttl">用各專案的 CAPM 報酬取代單一門檻</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司一律用 <span class="g">12%</span> 作為投資門檻。無風險利率 <span class="g">4%</span>,市場報酬 <span class="g">12%</span>。四個專案的 β 為:W(<span class="g">0.83</span>)、X(<span class="g">0.92</span>)、Y(<span class="g">1.09</span>)、Z(<span class="g">1.35</span>)。<b>(a)</b> 用 12% 門檻會接受哪些?<b>(b)</b> 用各自 CAPM 要求報酬應接受哪些?<b>(c)</b> 單一門檻會造成什麼錯誤?
+        <div class="qbox-en"><b>(English)</b> A firm uses a single 12 percent hurdle rate for all projects. The risk-free rate is 4 percent and the market return is 12 percent. Four projects have betas of 0.83 (W), 0.92 (X), 1.09 (Y), and 1.35 (Z), each with its own IRR. (a) Using the 12 percent hurdle, which are accepted? (b) Using each project's CAPM required return, which should be accepted? (c) What errors does the single hurdle rate cause?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">不同專案風險(β)不同,門檻應<b>因案而異</b>:各專案用自己的 β 算 CAPM 要求報酬,IRR &gt; 自身要求報酬才接受。若全用同一門檻,會「高風險爛案被誤收、低風險好案被誤拒」。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">要求報酬 = R<span class="var">f</span> + β × ( R<span class="var">m</span> − R<span class="var">f</span> ) = 4% + β × 8%</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 各專案 CAPM 要求報酬</span>
+        <ol class="steps">
+          <li>市場風險溢酬 = 12% − 4% = <span class="num">8%</span></li>
+          <li>W:4% + 0.83×8% = <span class="num">10.64%</span></li>
+          <li>X:4% + 0.92×8% = <span class="num">11.36%</span></li>
+          <li>Y:4% + 1.09×8% = <span class="num">12.72%</span></li>
+          <li>Z:4% + 1.35×8% = <span class="num">14.80%</span></li>
+        </ol>
+        <table class="mini">
+          <tr><th>專案</th><th>β</th><th>CAPM 要求報酬</th><th>vs 12%</th><th>vs 自身門檻</th></tr>
+          <tr><td>W</td><td>0.83</td><td>10.64%</td><td>低於</td><td>低於</td></tr>
+          <tr><td>X</td><td>0.92</td><td>11.36%</td><td>低於</td><td>高於 ✓</td></tr>
+          <tr><td>Y</td><td>1.09</td><td>12.72%</td><td>高於</td><td>高於 ✓</td></tr>
+          <tr><td>Z</td><td>1.35</td><td>14.80%</td><td>高於</td><td>低於</td></tr>
+        </table></div>
+      <div class="blk"><span class="lbl steps">判斷</span>
+        <ol class="steps">
+          <li><b>(a) 12% 門檻</b> → 接受 IRR&gt;12% 的:<b>Y、Z</b></li>
+          <li><b>(b) 正確(IRR &gt; 各自 CAPM)</b> → 接受:<b>X、Y</b></li>
+          <li><b>(c) 錯誤</b>:X 被錯拒(IRR 高於自身 11.36% 卻低於 12%);Z 被錯收(IRR 高於 12% 卻低於自身 14.80%,風險沒被補償)。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) Y, Z · (b) X, Y · (c) X 被錯拒、Z 被錯收</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch18 APV ========== -->
+<section id="ch18">
+  <div class="sec-head"><span class="ch">18</span><h2>槓桿下的評價與 APV</h2>
+    <span class="tag">APV · 利息稅盾 · 槓桿 β · 發行成本 · NPV/IRR</span></div>
+
+  <div class="callout"><b>FC-100V 算 NPV / IRR(CASH 現金流模式)— 本章通用：</b><br>
+  ① 按 <code>MODE</code> 選 <b>CASH</b>(現金流分析)。<br>
+  ② 設 <code>I% =</code> 折現率(例 14)。<br>
+  ③ 選 <code>Csh</code> 進入 D.Editor,依序輸入各期現金流:<code>CF0</code>(期初投資,打負號)、<code>CF1</code>、<code>CF2</code>… 每筆按 <code>=</code> 存入。<br>
+  ④ 移到 <code>NPV</code> 按 <code>SOLVE</code> → 得 NPV;移到 <code>IRR</code> 按 <code>SOLVE</code> → 得 IRR。<br>
+  <span style="color:var(--ink-soft)">※ 若每期現金流相同(年金),也可改用 CMPD 模式把該金額當 PMT、解 PV 後再減成本,兩法同義。</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">18.1</span><span class="qttl">全權益最高買價 + APV</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Benton 公司考慮購入一支 <span class="g">25</span> 輛車的車隊,直線折舊 <span class="g">5</span> 年(殘值 0)。每年稅前折舊前利潤(PBTD)<span class="g">$225,000</span>,稅率 <span class="g">21%</span>,折現率(全權益權益成本)<span class="g">14%</span>。<b>(a)</b> 若全權益融資,最高願付多少買價?<b>(b)</b> 若以 <span class="g">$700,000</span> 購入並舉借 <span class="g">$450,000</span>、利率 <span class="g">8%</span> 的只付息負債,求 APV。
+        <div class="qbox-en"><b>(English)</b> Benton Company is considering buying a fleet of 25 cars to be depreciated straight-line to zero over 5 years. The fleet generates pretax-before-depreciation earnings (PBTD) of $225,000 per year. The tax rate is 21 percent and the all-equity discount rate is 14 percent. (a) If the purchase is all-equity financed, what is the most the firm should pay? (b) If the firm pays $700,000 and finances $450,000 with interest-only debt at 8 percent, what is the APV?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>APV</b> = ① 假裝全用權益的基礎 NPV + ② 融資副效果(利息<b>稅盾</b>現值)。每年無槓桿現金流 UCF = 稅後營業利潤 + 折舊稅盾。<b>(a)</b> 技巧:折舊 = 買價/5,買價未知,故把 P 當變數令 Base NPV = 0 解最高價。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">UCF = PBTD·(1 − T<span class="var">c</span>) + 折舊·T<span class="var">c</span></div>
+          <div class="fline">基礎 NPV = −成本 + UCF·PVIFA(R<span class="var">E</span>, n)</div>
+          <div class="fline">年利息稅盾 = 負債 × 利率 × T<span class="var">c</span></div>
+          <div class="fline">APV = 基礎 NPV + 年利息稅盾·PVIFA(R<span class="var">D</span>, n)</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a) 全權益最高買價</span>
+        <ol class="steps">
+          <li><b>查因子</b> PVIFA(14%, 5) = <span class="num">3.4331</span></li>
+          <li><b>UCF 寫成 P 的函數</b>(折舊 = P/5):UCF = 225,000×0.79 + (P/5)×0.21 = 177,750 + 0.042P</li>
+          <li><b>令 Base NPV = 0</b>:P = (177,750 + 0.042P) × 3.4331</li>
+          <li><b>展開</b>:P = 610,233.5 + 0.14419P</li>
+          <li><b>解 P</b>:0.85581P = 610,233.5 → P = <span class="num">$713,048</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 (b) APV(買價 $700,000、負債 $450,000)</span>
+        <ol class="steps">
+          <li><b>折舊</b> = 700,000/5 = <span class="num">140,000</span>/年</li>
+          <li><b>UCF</b> = 225,000×0.79 + 140,000×0.21 = 177,750 + 29,400 = <span class="num">207,150</span></li>
+          <li><b>基礎 NPV</b> = −700,000 + 207,150×3.4331 = <span class="num">$11,167</span></li>
+          <li><b>年利息稅盾</b> = 450,000×8%×21% = <span class="num">7,560</span></li>
+          <li><b>稅盾現值</b>(用 8% 折現,PVIFA(8%,5)=3.9927)= 7,560×3.9927 = <span class="num">$30,185</span></li>
+          <li><b>APV</b> = 11,167 + 30,185 = <span class="num">$41,352</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法 ① 算基礎 NPV(CASH 模式)</div>
+        <span class="mode">CASH 模式</span>
+        <div class="keys"><span class="k">I%=14</span><span class="arrow">→</span><span class="k">Csh:</span><span class="k">CF0=−700000</span><span class="arrow">→</span><span class="k">CF1~CF5=207150</span><span class="arrow">→</span><span class="k">NPV</span><span class="k eq">SOLVE</span></div>
+        <div class="res">NPV ≈ 11,167(CF1~CF5 連按 5 次 207150 =)</div></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法 ② 算稅盾年金現值(CMPD 模式)</div>
+        <span class="mode">CMPD 模式 P/Y=1 C/Y=1</span>
+        <div class="keys"><span class="k">n=5</span><span class="arrow">→</span><span class="k">I%=8</span><span class="arrow">→</span><span class="k">PMT=−7560</span><span class="arrow">→</span><span class="k">FV=0</span><span class="arrow">→</span><span class="k">SOLVE</span><span class="arrow">→</span><span class="k">PV</span></div>
+        <div class="res">PV ≈ 30,185;APV = 11,167 + 30,185 = 41,352</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 最高買價 ≈ $713,048 · (b) APV ≈ $41,352</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">18.5</span><span class="qttl">用 unlevered β 還原各公司 R<sub>E</sub></span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">同產業無槓桿(資產)β<sub>A</sub> = <span class="g">1.05</span>。無風險利率 <span class="g">3.2%</span>,市場風險溢酬 <span class="g">8.1%</span>,稅率 <span class="g">21%</span>,負債 β = 0。North 部門 D/E ≈ <span class="g">0.5135</span>,South 部門 D/E ≈ <span class="g">1.9474</span>。求兩部門各自的權益成本 R<sub>E</sub>。
+        <div class="qbox-en"><b>(English)</b> Two divisions share an unlevered (asset) beta of 1.05. The risk-free rate is 3.2 percent, the market risk premium is 8.1 percent, the tax rate is 21 percent, and debt beta is assumed zero. North has a D/E of about 0.5135 and South about 1.9474. Find each division's cost of equity.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">負債放大股東風險,levered 權益 β 比資產 β 大。先用 levering 公式把資產 β 依各部門 D/E 加槓桿,再代入 CAPM 求 R<sub>E</sub>。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">β<span class="var">E</span> = β<span class="var">A</span> × [ 1 + (1 − T<span class="var">c</span>) × (D/E) ]</div>
+          <div class="fline">R<span class="var">E</span> = R<span class="var">f</span> + β<span class="var">E</span> × (市場風險溢酬)</div>
+          <div class="fvars">假設負債 β = 0</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — North(D/E = 0.5135)</span>
+        <ol class="steps">
+          <li><b>加槓桿</b>:β<sub>E</sub> = 1.05 × [1 + 0.79×0.5135] = 1.05 × 1.4057 = <span class="num">1.4760</span></li>
+          <li><b>CAPM</b>:R<sub>E</sub> = 3.2% + 1.4760×8.1% = <span class="num">15.16%</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 — South(D/E = 1.9474)</span>
+        <ol class="steps">
+          <li><b>加槓桿</b>:β<sub>E</sub> = 1.05 × [1 + 0.79×1.9474] = 1.05 × 2.5384 = <span class="num">2.6653</span></li>
+          <li><b>CAPM</b>:R<sub>E</sub> = 3.2% + 2.6653×8.1% = <span class="num">24.79%</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">North R<sub>E</sub> ≈ 15.16% · South R<sub>E</sub> ≈ 24.79%</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">18.6</span><span class="qttl">補貼貸款的 NPV(含發行成本)</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司取得 <span class="g">10</span> 年期、利率 <span class="g">5.8%</span> 的貸款,毛額 <span class="g">$5,300,000</span>,發行成本為毛額的 <span class="g">2.5%</span>,稅率 <span class="g">21%</span>。利息每年付、本金到期一次還。<b>(a)</b> 不含發行成本的 NPV?<b>(b)</b> 含發行成本(分 10 年攤銷)的 NPV?
+        <div class="qbox-en"><b>(English)</b> A firm obtains a 10-year, 5.8 percent loan with gross proceeds of $5,300,000. Flotation costs are 2.5 percent of gross proceeds and the tax rate is 21 percent. Interest is paid annually and principal is repaid at maturity. (a) What is the NPV of the loan excluding flotation costs? (b) What is the NPV including flotation costs amortized over 10 years?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">公平定價的貸款,用<b>稅後</b>現金流以<b>稅後</b>負債成本折現,NPV 剛好 = 0。讓 NPV 變負的是<b>發行成本</b>:實拿毛額 − 發行成本,卻按全額付息還本;發行成本分年攤銷有少量稅盾,但抵不過成本本身。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">稅後利率 = R<span class="var">D</span> × (1 − T<span class="var">c</span>)</div>
+          <div class="fline">稅後利息 = 本金 × R<span class="var">D</span> × (1 − T<span class="var">c</span>)</div>
+          <div class="fline">NPV = +毛額 − 稅後利息·PVIFA − 本金·PVIF  (以稅後利率折現)</div>
+          <div class="fline">發行成本年稅盾 = (發行成本 ÷ 年數) × T<span class="var">c</span></div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a) 不含發行成本</span>
+        <ol class="steps">
+          <li><b>稅後負債利率</b> = 5.8%×0.79 = <span class="num">4.582%</span></li>
+          <li><b>每年稅後利息</b> = 5,300,000×5.8%×0.79 = <span class="num">242,846</span></li>
+          <li><b>折現</b>(PVIFA≈7.8809,PVIF≈0.6389):NPV = 5,300,000 − 242,846×7.8809 − 5,300,000×0.6389 ≈ <span class="num">$0</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 (b) 含發行成本</span>
+        <ol class="steps">
+          <li><b>發行成本</b> = 2.5%×5,300,000 = <span class="num">132,500</span></li>
+          <li><b>每年攤銷</b> = 13,250 → <b>稅盾</b> = 13,250×0.21 = <span class="num">2,782.50</span>/年</li>
+          <li><b>稅盾現值</b> = 2,782.50×7.8809 = <span class="num">21,929</span></li>
+          <li><b>NPV</b> = 0 − 132,500 + 21,929 = <span class="num">−$110,571</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(用 CASH 模式驗證 a 的 NPV=0)</div>
+        <span class="mode">CASH 模式</span>
+        <div class="keys"><span class="k">I%=4.582</span><span class="arrow">→</span><span class="k">CF0=+5300000</span><span class="arrow">→</span><span class="k">CF1~CF9=−242846</span><span class="arrow">→</span><span class="k">CF10=−5542846</span><span class="arrow">→</span><span class="k">NPV</span><span class="k eq">SOLVE</span></div>
+        <div class="res">NPV ≈ 0(CF10 = 利息 242,846 + 本金 5,300,000)</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) NPV = $0 · (b) NPV ≈ −$110,571</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">18.7</span><span class="qttl">全權益專案的 NPV</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Jimenez 公司為全權益公司,權益成本 <span class="g">11.2%</span>(題目另給無風險利率 <span class="g">3.4%</span>)。專案需投資 <span class="g">$11.6M</span>,直線折舊 <span class="g">6</span> 年,每年「營收 − 費用」= <span class="g">$3.5M</span>,稅率 <span class="g">23%</span>。求 NPV 並判斷是否接受。
+        <div class="qbox-en"><b>(English)</b> Jimenez Company is all-equity with a cost of equity of 11.2 percent (a risk-free rate of 3.4 percent is also given). A project costs $11.6 million, is depreciated straight-line over 6 years, and generates revenues minus expenses of $3.5 million per year. The tax rate is 23 percent. Find the NPV and decide whether to accept.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">全權益公司沒有負債,折現率直接用<b>權益成本 R<sub>E</sub></b>。每年營業現金流 OCF = 稅後營業利潤 + 折舊稅盾。<b>無風險利率 3.4% 是干擾項</b>,用不到。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">OCF = (營收 − 費用)·(1 − T<span class="var">c</span>) + 折舊·T<span class="var">c</span></div>
+          <div class="fline">NPV = −初始投資 + OCF · PVIFA(R<span class="var">E</span>, n)</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>每年折舊</b> = 11,600,000/6 = <span class="num">1,933,333.33</span></li>
+          <li><b>OCF</b> = 3,500,000×0.77 + 1,933,333.33×0.23 = 2,695,000 + 444,666.67 = <span class="num">3,139,666.67</span></li>
+          <li><b>年金因子</b>(表上沒 11.2%,自算):1.112<sup>6</sup> = 1.890727 → PVIFA = (1 − 1/1.890727)/0.112 = <span class="num">4.2063</span></li>
+          <li><b>NPV</b> = −11,600,000 + 3,139,666.67×4.2063 = <span class="num">+$1,606,308</span> → <b>接受</b></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(NPV / IRR 一次到位,CASH 模式)</div>
+        <span class="mode">CASH 模式</span>
+        <div class="keys"><span class="k">I%=11.2</span><span class="arrow">→</span><span class="k">CF0=−11600000</span><span class="arrow">→</span><span class="k">CF1~CF6=3139666.67</span><span class="arrow">→</span><span class="k">NPV</span><span class="k eq">SOLVE</span><span class="arrow">→</span><span class="k">IRR</span><span class="k eq">SOLVE</span></div>
+        <div class="res">NPV ≈ 1,606,308;IRR ≈ 17.5%(&gt; 11.2% → 接受)</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">NPV ≈ +$1,606,308 → 接受</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">18.8</span><span class="qttl">永續現金流 + WACC</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">National Electric 評估需投資 <span class="g">$41M</span> 的專案,產生<b>永續</b>無槓桿現金流 <span class="g">$3.1M</span>/年。稅前負債成本 <span class="g">5.1%</span>、權益成本 <span class="g">10.3%</span>、目標負債佔比 D/V = <span class="g">60%</span>、稅率 <span class="g">21%</span>。用 WACC 求 NPV。
+        <div class="qbox-en"><b>(English)</b> National Electric is evaluating a $41 million project that produces perpetual unlevered cash flows of $3.1 million per year. The pretax cost of debt is 5.1 percent, the cost of equity is 10.3 percent, the target debt-to-value ratio is 60 percent, and the tax rate is 21 percent. Using the WACC, find the NPV.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">無槓桿永續現金流現值 = 現金流 ÷ WACC(永續年金)。WACC 已內含負債稅盾,直接用它折現即可。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">WACC = (E/V)·R<span class="var">E</span> + (D/V)·R<span class="var">D</span>·(1 − T<span class="var">c</span>)</div>
+          <div class="fline">永續現值 PV = 年現金流 ÷ WACC</div>
+          <div class="fline">NPV = PV − 初始投資</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>權重</b>:D/V = 60% → E/V = 40%</li>
+          <li><b>WACC</b> = 0.40×10.3% + 0.60×5.1%×0.79 = 4.12% + 2.4174% = <span class="num">6.5374%</span></li>
+          <li><b>永續現值</b> = 3,100,000 / 0.065374 = <span class="num">$47,419,489</span></li>
+          <li><b>NPV</b> = 47,419,489 − 41,000,000 = <span class="num">+$6,419,489</span> → <b>接受</b></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(永續 = 直接相除)</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">3100000</span><span class="k op">÷</span><span class="k">0.065374</span><span class="k op">−</span><span class="k">41000000</span><span class="k eq">=</span></div>
+        <div class="res">顯示 6,419,489(即 NPV)</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">WACC = 6.5374% · NPV ≈ +$6,419,489 → 接受</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch19 股利 ========== -->
+<section id="ch19">
+  <div class="sec-head"><span class="ch">19</span><h2>股利與股利政策</h2>
+    <span class="tag">除息價 · 股票股利 · 股票分割</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">19.1</span><span class="qttl">除息日股價(股利課稅)</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Gatto 公司除息前股價 <span class="g">$78.35</span>,即將發放現金股利 <span class="g">$5.85</span>,股利有效稅率 <span class="g">15%</span>。求除息日股價。
+        <div class="qbox-en"><b>(English)</b> Gatto Inc. stock sells for $78.35 just before going ex-dividend. The company will pay a cash dividend of $5.85, and the effective tax rate on dividends is 15 percent. What is the ex-dividend price?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">除息日股價下跌幅度約等於股東「實際拿到」的稅後股利:股利×(1−稅率)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">P<span class="var">ex</span> = P<span class="var">0</span> − 股利 × (1 − 稅率)</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>稅後股利</b> = 5.85×(1−0.15) = 5.85×0.85 = <span class="num">4.9725</span></li>
+          <li><b>除息價</b> = 78.35 − 4.9725 = <span class="num">73.3775</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">78.35</span><span class="k op">−</span><span class="k">5.85</span><span class="k op">×</span><span class="k">0.85</span><span class="k eq">=</span></div>
+        <div class="res">顯示 73.3775</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">P<sub>ex</sub> = $73.3775 ≈ $73.38</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">19.2</span><span class="qttl">股票股利對權益帳戶的影響</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Vulcano 公司權益:普通股(面額 <span class="g">$0.50</span>、<span class="g">40,000</span> 股)= $20,000;資本公積 $210,000;保留盈餘 $587,300。市價 <span class="g">$42</span>。求 <b>(a)</b> <span class="g">10%</span>、<b>(b)</b> <span class="g">25%</span> 股票股利後各權益帳戶。
+        <div class="qbox-en"><b>(English)</b> Vulcano Corp.'s equity accounts: common stock ($0.50 par, 40,000 shares) = $20,000; capital surplus = $210,000; retained earnings = $587,300. The market price is $42. Show the new equity accounts after (a) a 10 percent and (b) a 25 percent stock dividend.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>小額股票股利</b>:依<b>市價</b>把保留盈餘移轉到股本與資本公積。① 股本增加 = 新股數×面額;② 公積增加 = 新股數×(市價−面額);③ 保留盈餘減少 = 新股數×市價。權益總額不變。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">普通股本增加 = 新股數 × 面額</div>
+          <div class="fline">資本公積增加 = 新股數 × (市價 − 面額)</div>
+          <div class="fline">保留盈餘減少 = 新股數 × 市價</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a) 10% 股票股利</span>
+        <ol class="steps">
+          <li><b>新股數</b> = 40,000×10% = <span class="num">4,000</span></li>
+          <li><b>普通股本</b> = 20,000 + 4,000×0.50 = <span class="num">$22,000</span></li>
+          <li><b>資本公積</b> = 210,000 + 4,000×41.50 = 210,000 + 166,000 = <span class="num">$376,000</span></li>
+          <li><b>保留盈餘</b> = 587,300 − 4,000×42 = 587,300 − 168,000 = <span class="num">$419,300</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 (b) 25% 股票股利</span>
+        <ol class="steps">
+          <li><b>新股數</b> = 40,000×25% = <span class="num">10,000</span></li>
+          <li><b>普通股本</b> = 20,000 + 10,000×0.50 = <span class="num">$25,000</span></li>
+          <li><b>資本公積</b> = 210,000 + 10,000×41.50 = <span class="num">$625,000</span></li>
+          <li><b>保留盈餘</b> = 587,300 − 10,000×42 = <span class="num">$167,300</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 22,000 / 376,000 / 419,300 — (b) 25,000 / 625,000 / 167,300</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">19.3</span><span class="qttl">股票分割與反分割</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司原有 <span class="g">40,000</span> 股、面額 <span class="g">$0.50</span>。求 <b>(a)</b> 4 拆 1、<b>(b)</b> 1 併 5 反分割後的股數、面額與帳戶變化。
+        <div class="qbox-en"><b>(English)</b> A company has 40,000 shares with a par value of $0.50. Find the new share count, par value, and account changes after (a) a 4-for-1 split and (b) a 1-for-5 reverse split.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">股票分割只改變股數與面額,普通股本、資本公積、保留盈餘的金額完全不變。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">新股數 = 原股數 × 分割比;新面額 = 原面額 ÷ 分割比</div>
+          <div class="fline">反分割反之;各帳戶金額不變</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>(a) 4-for-1</b>:股數 = 40,000×4 = <span class="num">160,000</span>;面額 = 0.50÷4 = <span class="num">$0.125</span>;帳戶不變。</li>
+          <li><b>(b) 1-for-5 反分割</b>:股數 = 40,000÷5 = <span class="num">8,000</span>;面額 = 0.50×5 = <span class="num">$2.50</span>;帳戶不變。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 160,000 股、$0.125 — (b) 8,000 股、$2.50(帳戶金額皆不變)</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">19.4</span><span class="qttl">分割/股利後的新股價</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">SMO 公司流通在外 <span class="g">540,000</span> 股,股價 <span class="g">$83</span>。求各情形後每股新股價:<b>(a)</b> 5 換 3 分割、<b>(b)</b> 15% 股票股利、<b>(c)</b> 42.5% 股票股利、<b>(d)</b> 4 換 7 反分割。
+        <div class="qbox-en"><b>(English)</b> SMO Inc. has 540,000 shares outstanding at $83. Find the new price per share after (a) a 5-for-3 split, (b) a 15 percent stock dividend, (c) a 42.5 percent stock dividend, and (d) a 4-for-7 reverse split.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">分割或股票股利不改變總市值,只改變股數。新股價 = 原總市值 ÷ 新股數。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">總市值 = 540,000 × 83 = $44,820,000(不變)</div>
+          <div class="fline">新股價 = 44,820,000 ÷ 新股數</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>(a) 5-for-3</b>:股數 = 540,000×5/3 = 900,000;股價 = 44,820,000/900,000 = <span class="num">$49.80</span></li>
+          <li><b>(b) 15% 股利</b>:股數 = 540,000×1.15 = 621,000;股價 = <span class="num">$72.17</span></li>
+          <li><b>(c) 42.5% 股利</b>:股數 = 540,000×1.425 = 769,500;股價 = <span class="num">$58.25</span></li>
+          <li><b>(d) 4-for-7 反分割</b>:股數 = 540,000×4/7 = 308,571.43;股價 = <span class="num">$145.25</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) $49.80 (b) $72.17 (c) $58.25 (d) $145.25</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">19.7</span><span class="qttl">股票股利後的每股股價</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Murray Manufacturing 發放 <span class="g">25%</span> 股票股利,流通在外 <span class="g">11,000</span> 股,公司權益(市值)總額 <span class="g">$670,000</span>。求除權後每股股價。
+        <div class="qbox-en"><b>(English)</b> Murray Manufacturing declares a 25 percent stock dividend. It has 11,000 shares outstanding and total equity (market value) of $670,000. What is the price per share after the dividend?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">股票股利不流出現金,公司總價值不變,股數變多 → 每股價值下降。新股價 = 總價值 ÷ 新股數。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">新股數 = 原股數 × (1 + 股利率)</div>
+          <div class="fline">除權後股價 = 權益總額 ÷ 新股數</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>新股數</b> = 11,000×(1+0.25) = <span class="num">13,750</span></li>
+          <li><b>除權後股價</b> = 670,000 / 13,750 = <span class="num">$48.7273</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">670000</span><span class="k op">÷</span><span class="k">13750</span><span class="k eq">=</span></div>
+        <div class="res">顯示 48.7273</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">≈ $48.7273 ≈ $48.73</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch22 選擇權 ========== -->
+<section id="ch22">
+  <div class="sec-head"><span class="ch">22</span><h2>選擇權與 Black‑Scholes</h2>
+    <span class="tag">買賣權平價 · BS 評價 · Delta · 二項式</span></div>
+
+  <div class="callout"><b>本章共通提醒:</b>折現一律用<b>連續複利</b> <code>e<sup>−Rt</sup></code>(= SHIFT ln 的反函數,不是 (1+R)<sup>−t</sup>)。N(d₁)、N(d₂) 一律用上方<a href="#interp" style="color:var(--accent);font-weight:700">內插教學工具</a>查表,下面每題都把內插過程寫出來。</div>
+
+  <details class="card" open>
+    <summary><span class="qno">22.6</span><span class="qttl">用買賣權平價求賣權</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某股票現價 <span class="g">S=$73</span>。履約價 <span class="g">E=$70</span>、<span class="g">3</span> 個月到期的買權,權利金 <span class="g">C=$5.27</span>。連續複利無風險利率 <span class="g">R=2.6%</span>。求同條件賣權價格。
+        <div class="qbox-en"><b>(English)</b> A stock currently sells for $73. A call with a $70 strike expiring in 3 months sells for $5.27. The continuously compounded risk-free rate is 2.6 percent. Use put-call parity to find the price of the corresponding put.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>買賣權平價(連續複利)</b>:「買權 + 履約價現值的現金」與「賣權 + 一股股票」到期價值相同,故兩邊現值相等。已知三量即可解第四量。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">C + E·e<span class="var">−Rt</span> = P + S</div>
+          <div class="fline">P = C + E·e<span class="var">−Rt</span> − S</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>時間</b> t = 3/12 = 0.25;Rt = 0.026×0.25 = 0.0065</li>
+          <li><b>履約價現值</b> = 70×e<sup>−0.0065</sup> = 70×0.993521 = <span class="num">69.5465</span></li>
+          <li><b>代入</b>:P = 5.27 + 69.5465 − 73 = <span class="num">1.8165</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(e<sup>x</sup> = SHIFT ln)</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">70</span><span class="k op">×</span><span class="k">SHIFT</span><span class="k">ln</span><span class="k">(</span><span class="k op">−</span><span class="k">0.0065</span><span class="k">)</span><span class="k op">+</span><span class="k">5.27</span><span class="k op">−</span><span class="k">73</span><span class="k eq">=</span></div>
+        <div class="res">顯示 1.8165</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">P ≈ $1.8165 ≈ $1.82</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">22.10</span><span class="qttl">Black‑Scholes 求買權與賣權</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox"><span class="g">S=$58</span>、<span class="g">E=$60</span>、到期 <span class="g">4</span> 個月、連續複利 <span class="g">R=2.7%</span>、波動率 <span class="g">σ=47%</span>。用 Black‑Scholes 求買權 C 與賣權 P。
+        <div class="qbox-en"><b>(English)</b> A stock with S = $58, strike E = $60, time to expiration 4 months, continuously compounded rate R = 2.7 percent, and volatility σ = 47 percent. Use Black-Scholes to find the call and put prices.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">BS 固定步驟:① 算 d₁、d₂ → ② 內插查 N(d₁)、N(d₂) → ③ 代買權公式得 C → ④ 用平價得 P。</div></div>
+      <div class="blk"><span class="lbl formula">公式(考試提供)</span>
+        <div class="fbox">
+          <div class="fline">d<span class="var">1</span> = [ ln(S/E) + (R + σ²/2)·t ] ÷ (σ√t)</div>
+          <div class="fline">d<span class="var">2</span> = d<span class="var">1</span> − σ√t</div>
+          <div class="fline">C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(d<span class="var">2</span>)</div>
+          <div class="fline">P = C + E·e<span class="var">−Rt</span> − S</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 算 d₁、d₂</span>
+        <ol class="steps">
+          <li><b>t</b> = 4/12 = 0.3333;<b>σ²/2</b> = 0.47²/2 = 0.11045</li>
+          <li><b>ln(S/E)</b> = ln(58/60) = −0.033902</li>
+          <li><b>(R+σ²/2)·t</b> = (0.027+0.11045)×0.3333 = 0.045817</li>
+          <li><b>分子</b> = −0.033902 + 0.045817 = 0.011915</li>
+          <li><b>分母</b> σ√t = 0.47×√0.3333 = 0.271355</li>
+          <li><b>d₁</b> = 0.011915/0.271355 = <span class="num">0.0439</span>;<b>d₂</b> = 0.0439 − 0.271355 = <span class="num">−0.2274</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">內插查 N(d₁)、N(d₂)</span>
+        <ol class="steps">
+          <li><b>N(d₁), 0.0439</b>:N(0.04)=0.5160,N(0.05)=0.5199,w=0.39 → 0.5160 + 0.39×0.0039 = <span class="num">0.5175</span></li>
+          <li><b>N(d₂), −0.2274</b>:N(0.22)=0.5871,N(0.23)=0.5910,w=0.74 → N(0.2274)=0.5900;對稱 N(−0.2274)=1−0.5900 = <span class="num">0.4100</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">代入求 C、P</span>
+        <ol class="steps">
+          <li><b>e<sup>−Rt</sup></b> = e<sup>−0.009</sup> = <span class="num">0.991040</span></li>
+          <li><b>C</b> = 58×0.5175 − 60×0.991040×0.4100 = 30.015 − 24.380 = <span class="num">$5.64</span></li>
+          <li><b>P</b> = 5.6354 + 59.4624 − 58 = <span class="num">$7.10</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(d₁ 一次算完)</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">(</span><span class="k">ln</span><span class="k">(</span><span class="k">58</span><span class="k op">÷</span><span class="k">60</span><span class="k">)</span><span class="k op">+</span><span class="k">0.045817</span><span class="k">)</span><span class="k op">÷</span><span class="k">(</span><span class="k">0.47</span><span class="k op">×</span><span class="k">√</span><span class="k">(</span><span class="k">4</span><span class="k op">÷</span><span class="k">12</span><span class="k">)</span><span class="k">)</span><span class="k eq">=</span></div>
+        <div class="res">d₁ = 0.0439;e<sup>−Rt</sup> 用 SHIFT ln(−0.009)</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">d₁=0.0439, d₂=−0.2274 · C ≈ $5.64 · P ≈ $7.10</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">22.11</span><span class="qttl">Black‑Scholes 求買權與賣權</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox"><span class="g">S=$58</span>、<span class="g">E=$55</span>、連續複利 <span class="g">R=4%</span>、到期 <span class="g">5</span> 個月、波動率 <span class="g">σ=53%</span>。求買權 C 與賣權 P。
+        <div class="qbox-en"><b>(English)</b> A stock with S = $58, strike E = $55, continuously compounded rate R = 4 percent, time to expiration 5 months, and volatility σ = 53 percent. Find the call and put prices.</div></div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">d<span class="var">1</span> = [ ln(S/E) + (R + σ²/2)·t ] ÷ (σ√t)</div>
+          <div class="fline">d<span class="var">2</span> = d<span class="var">1</span> − σ√t</div>
+          <div class="fline">C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(d<span class="var">2</span>) ; P = C + E·e<span class="var">−Rt</span> − S</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 算 d₁、d₂</span>
+        <ol class="steps">
+          <li><b>t</b> = 5/12 = 0.41667;<b>σ²/2</b> = 0.53²/2 = 0.14045</li>
+          <li><b>ln(S/E)</b> = ln(58/55) = 0.053110</li>
+          <li><b>(R+σ²/2)·t</b> = (0.04+0.14045)×0.41667 = 0.075188</li>
+          <li><b>分子</b> = 0.053110 + 0.075188 = 0.128298;<b>分母</b> σ√t = 0.53×√0.41667 = 0.342114</li>
+          <li><b>d₁</b> = 0.128298/0.342114 = <span class="num">0.3750</span>;<b>d₂</b> = 0.3750 − 0.342114 = <span class="num">0.0329</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">內插查表</span>
+        <ol class="steps">
+          <li><b>N(d₁), 0.3750</b>:N(0.37)=0.6443,N(0.38)=0.6480,w=0.50 → <span class="num">0.6462</span></li>
+          <li><b>N(d₂), 0.0329</b>:N(0.03)=0.5120,N(0.04)=0.5160,w=0.29 → <span class="num">0.5132</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">代入求 C、P</span>
+        <ol class="steps">
+          <li><b>e<sup>−Rt</sup></b> = e<sup>−0.016667</sup> = <span class="num">0.983471</span></li>
+          <li><b>C</b> = 58×0.6462 − 55×0.983471×0.5132 = 37.4796 − 27.7595 = <span class="num">$9.72</span></li>
+          <li><b>P</b> = 9.7201 + 54.0909 − 58 = <span class="num">$5.81</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">d₁=0.3750, d₂=0.0329 · C ≈ $9.72 · P ≈ $5.81</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">22.12</span><span class="qttl">選擇權 Delta</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox"><span class="g">S=$74</span>、<span class="g">E=$70</span>、連續複利 <span class="g">R=4.3%</span>、到期 <span class="g">9</span> 個月、波動率 <span class="g">σ=46%</span>。求買權與賣權的 Delta 並解釋意義。
+        <div class="qbox-en"><b>(English)</b> Delta Inc. stock has S = $74, strike E = $70, continuously compounded rate R = 4.3 percent, time to expiration 9 months, and volatility σ = 46 percent. Find the call and put deltas and explain their meaning.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>Delta</b> = 股價每變動 $1,選擇權價值的變動量。買權 Delta = N(d₁)(0~1);賣權 Delta = N(d₁)−1(−1~0)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">買權 Δ = N(d<span class="var">1</span>)</div>
+          <div class="fline">賣權 Δ = N(d<span class="var">1</span>) − 1</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>t</b> = 9/12 = 0.75;<b>σ²/2</b> = 0.46²/2 = 0.1058</li>
+          <li><b>ln(S/E)</b> = ln(74/70) = 0.055570</li>
+          <li><b>(R+σ²/2)·t</b> = (0.043+0.1058)×0.75 = 0.1116;<b>分母</b> σ√t = 0.46×√0.75 = 0.398372</li>
+          <li><b>d₁</b> = (0.055570+0.1116)/0.398372 = 0.167170/0.398372 = <span class="num">0.4196</span></li>
+          <li><b>內插 N(d₁), 0.4196</b>:N(0.41)=0.6591,N(0.42)=0.6628,w=0.96 → <span class="num">0.6627</span>(= 買權 Δ)</li>
+          <li><b>賣權 Δ</b> = 0.6627 − 1 = <span class="num">−0.3373</span></li>
+          <li><b>解釋</b>:股價每漲 $1,買權約漲 $0.6627、賣權約跌 $0.3373。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">買權 Δ ≈ 0.6627 · 賣權 Δ ≈ −0.3373</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">22.16</span><span class="qttl">二項式(風險中立)評價買權</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">股價 <span class="g">S=$84</span>,一年後上漲 <span class="g">18%</span>(u=1.18)或下跌 <span class="g">18%</span>(d=0.82),買權履約價 <span class="g">K=$80</span>,無風險利率 <span class="g">R<sub>f</sub>=8%</span>。用風險中立法求買權現值。
+        <div class="qbox-en"><b>(English)</b> A stock priced at $84 will rise 18 percent (u = 1.18) or fall 18 percent (d = 0.82) over one year. A call has a strike of $80 and the risk-free rate is 8 percent. Use risk-neutral valuation to find the call's value today.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>風險中立評價</b>:先求假想上漲機率 p,使股票期望報酬等於無風險利率;再用 p 算買權到期期望報酬,並以無風險利率折現回現在。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">p = [ (1 + R<span class="var">f</span>) − d ] ÷ ( u − d )</div>
+          <div class="fline">C = [ p·C<span class="var">u</span> + (1 − p)·C<span class="var">d</span> ] ÷ (1 + R<span class="var">f</span>)</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>到期股價與報酬</b>:上漲 84×1.18 = 99.12 → C<sub>u</sub> = 99.12−80 = <span class="num">19.12</span>;下跌 84×0.82 = 68.88 → C<sub>d</sub> = <span class="num">0</span></li>
+          <li><b>風險中立機率</b>:p = (1.08−0.82)/(1.18−0.82) = 0.26/0.36 = <span class="num">0.7222</span></li>
+          <li><b>買權現值</b>:C = [0.7222×19.12 + 0.2778×0]/1.08 = 13.8085/1.08 = <span class="num">$12.79</span></li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">(</span><span class="k">1.08</span><span class="k op">−</span><span class="k">0.82</span><span class="k">)</span><span class="k op">÷</span><span class="k">(</span><span class="k">1.18</span><span class="k op">−</span><span class="k">0.82</span><span class="k">)</span><span class="k op">×</span><span class="k">19.12</span><span class="k op">÷</span><span class="k">1.08</span><span class="k eq">=</span></div>
+        <div class="res">顯示 12.79</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">p = 0.7222 · C ≈ $12.79</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch23 員工選擇權 ========== -->
+<section id="ch23">
+  <div class="sec-head"><span class="ch">23</span><h2>員工股票選擇權</h2>
+    <span class="tag">薪酬選擇權的 BS 評價 · 風險趨避</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">23.1</span><span class="qttl">員工選擇權評價與決策(Cheryl)</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Cheryl Levin 獲配 <span class="g">35,000</span> 份履約價=現價的歐式買權:<span class="g">S=E=$50</span>、到期 <span class="g">5</span> 年、波動率 <span class="g">σ=53%</span>、連續複利 <span class="g">R=6%</span>。<b>(a)</b> 用 BS 評價總值;<b>(b)</b> 若另一選擇是 <span class="g">$750,000</span> 現金,她該選哪個?<b>(c)</b> 若她風險趨避且不能賣出,看法是否改變?
+        <div class="qbox-en"><b>(English)</b> Cheryl Levin receives 35,000 at-the-money European call options on a stock with S = E = $50, 5 years to expiration, volatility σ = 53 percent, and a continuously compounded rate of 6 percent. (a) Value the options using Black-Scholes. (b) Compared with a $750,000 cash bonus, which should she take? (c) If she is risk-averse and cannot sell or hedge, does the answer change?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">公司給的選擇權用 BS 評價(履約價=現價,ln(S/E)=0)。但 BS 是「市場公平價值」;對<b>不能分散風險、不能避險</b>的員工本人而言,這個價值會被<b>高估</b>。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">d<span class="var">1</span> = [ ln(S/E) + (R + σ²/2)·t ] ÷ (σ√t)</div>
+          <div class="fline">d<span class="var">2</span> = d<span class="var">1</span> − σ√t</div>
+          <div class="fline">C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(d<span class="var">2</span>)</div>
+          <div class="fline">總值 = 每股 C × 選擇權份數</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a) — 算 d₁、d₂</span>
+        <ol class="steps">
+          <li><b>ln(S/E)</b> = 0;<b>σ²/2</b> = 0.53²/2 = 0.14045</li>
+          <li><b>(R+σ²/2)·t</b> = (0.06+0.14045)×5 = 1.00225;<b>分母</b> σ√t = 0.53×√5 = 1.185116</li>
+          <li><b>d₁</b> = 1.00225/1.185116 = <span class="num">0.8457</span>;<b>d₂</b> = 0.8457 − 1.185116 = <span class="num">−0.3394</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">內插查表</span>
+        <ol class="steps">
+          <li><b>N(d₁), 0.8457</b>:N(0.84)=0.7995,N(0.85)=0.8023,w=0.57 → <span class="num">0.8011</span></li>
+          <li><b>N(d₂), −0.3394</b>:N(0.33)=0.6293,N(0.34)=0.6331,w=0.94 → N(0.3394)=0.6329;N(−0.3394)=1−0.6329 = <span class="num">0.3671</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">代入求每股與總值</span>
+        <ol class="steps">
+          <li><b>e<sup>−Rt</sup></b> = e<sup>−0.3</sup> = <span class="num">0.740818</span></li>
+          <li><b>每股 C</b> = 50×0.8011 − 50×0.740818×0.3671 = 40.055 − 13.598 = <span class="num">$26.46</span></li>
+          <li><b>總值</b> = 26.46 × 35,000 = <span class="num">$926,006</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">決策</span>
+        <ol class="steps">
+          <li><b>(b)</b> 選擇權 $926,006 &gt; 現金 $750,000 → 風險中立則選選擇權。</li>
+          <li><b>(c)</b> 風險趨避且不能賣/避險:無法分散集中於自家股票的風險,BS 市場價值對她被高估,主觀價值可能低於 $750,000,故可能改選現金。</li>
+        </ol></div>
+      <div class="calc"><div class="calc-h">FC-100V 按法(e^−0.3)</div>
+        <span class="mode">COMP 模式</span>
+        <div class="keys"><span class="k">SHIFT</span><span class="k">ln</span><span class="k">(</span><span class="k op">−</span><span class="k">0.3</span><span class="k">)</span><span class="k eq">=</span></div>
+        <div class="res">顯示 0.740818</div></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 每股 $26.46、總值 ≈ $926,006 (b) 風險中立選選擇權 (c) 風險趨避可能改選現金</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">23.2</span><span class="qttl">總薪酬:薪資現值 + 選擇權(Jared)</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Jared Lazarus 薪酬:年薪 <span class="g">$350,000</span>(每年<b>年底</b>付、共 <span class="g">3</span> 年、折現率 <span class="g">7%</span>)+ <span class="g">25,000</span> 份履約價=現價歐式買權(<span class="g">S=E=$53</span>、到期 <span class="g">3</span> 年、波動率 <span class="g">σ=57%</span>、連續複利 <span class="g">R=5%</span>)。求總薪酬現值。
+        <div class="qbox-en"><b>(English)</b> Jared Lazarus's compensation is a salary of $350,000 paid at year-end for 3 years (discount rate 7 percent) plus 25,000 at-the-money European calls (S = E = $53, 3 years to expiration, volatility σ = 57 percent, continuously compounded rate 5 percent). Find the present value of total compensation.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">總薪酬 = 薪資年金現值 + 選擇權 BS 總值。薪資用一般折現(7%),選擇權用 BS(5% 連續複利)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">薪資現值 = 年薪 × PVIFA(7%, 3)</div>
+          <div class="fline">d<span class="var">1</span> = [ ln(S/E) + (R + σ²/2)·t ] ÷ (σ√t) ; d<span class="var">2</span> = d<span class="var">1</span> − σ√t</div>
+          <div class="fline">C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(d<span class="var">2</span>)</div>
+          <div class="fline">總薪酬 = 薪資現值 + 每股 C × 份數</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 薪資現值</span>
+        <ol class="steps">
+          <li><b>PVIFA(7%,3)</b> = (1 − 1/1.07³)/0.07 = (1 − 0.816298)/0.07 = <span class="num">2.6243</span></li>
+          <li><b>薪資現值</b> = 350,000 × 2.6243 = <span class="num">$918,510</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 — 選擇權(d₁、d₂)</span>
+        <ol class="steps">
+          <li><b>ln(S/E)</b> = 0;<b>σ²/2</b> = 0.57²/2 = 0.16245</li>
+          <li><b>(R+σ²/2)·t</b> = (0.05+0.16245)×3 = 0.63735;<b>分母</b> σ√t = 0.57×√3 = 0.987269</li>
+          <li><b>d₁</b> = 0.63735/0.987269 = <span class="num">0.6456</span>;<b>d₂</b> = 0.6456 − 0.987269 = <span class="num">−0.3417</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">內插 + 代入</span>
+        <ol class="steps">
+          <li><b>N(d₁), 0.6456</b>:N(0.64)=0.7389,N(0.65)=0.7422,w=0.56 → <span class="num">0.7407</span></li>
+          <li><b>N(d₂), −0.3417</b>:N(0.34)=0.6331,N(0.35)=0.6368,w=0.17 → N(0.3417)=0.6337;N(−0.3417)=1−0.6337 = <span class="num">0.3663</span></li>
+          <li><b>e<sup>−Rt</sup></b> = e<sup>−0.15</sup> = <span class="num">0.860708</span></li>
+          <li><b>每股 C</b> = 53×0.7407 − 53×0.860708×0.3663 = 39.2571 − 16.7097 = <span class="num">$22.55</span></li>
+          <li><b>選擇權總值</b> = 22.55 × 25,000 = <span class="num">$563,685</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">合計</span>
+        <ol class="steps"><li><b>總薪酬</b> = 918,510 + 563,685 = <span class="num">$1,482,195</span></li></ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">薪資 $918,510 + 選擇權 $563,685 = 總薪酬 ≈ $1,482,195</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch24 可轉債 ========== -->
+<section id="ch24">
+  <div class="sec-head"><span class="ch">24</span><h2>認股權證與可轉債</h2>
+    <span class="tag">轉換比率/價格/價值 · 轉換溢價 · 權證最低值</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">24.1</span><span class="qttl">轉換價格</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某可轉債面額 <span class="g">$1,000</span>,轉換比率為每張可轉成 <span class="g">15.7</span> 股。求轉換價格。
+        <div class="qbox-en"><b>(English)</b> A convertible bond has a face value of $1,000 and a conversion ratio of 15.7 shares. What is the conversion price?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>轉換價格</b> = 面額 ÷ 轉換比率,即「實質上用多少面額換到一股」。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">轉換價格 = 面額 ÷ 轉換比率</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps"><li>轉換價格 = 1,000 ÷ 15.7 = <span class="num">$63.69</span></li></ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">轉換價格 = $63.69</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">24.3</span><span class="qttl">轉換價值與轉換溢價</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Agawal 可轉債面額 <span class="g">$1,000</span>,轉換比率 <span class="g">15.2</span> 股,股價 <span class="g">$46.34</span>。求轉換價值、轉換價格、轉換溢價(相對股價)。
+        <div class="qbox-en"><b>(English)</b> Agawal's convertible bond has a face value of $1,000, a conversion ratio of 15.2 shares, and a current stock price of $46.34. Find the conversion value, conversion price, and conversion premium (relative to the stock price).</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>轉換價值</b> = 立刻轉換能拿到的股票市值 = 轉換比率 × 股價。<b>轉換溢價</b> = (轉換價格 − 股價)/股價。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">轉換價值 = 轉換比率 × 股價</div>
+          <div class="fline">轉換價格 = 面額 ÷ 轉換比率</div>
+          <div class="fline">轉換溢價 = (轉換價格 − 股價) ÷ 股價</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>轉換價值</b> = 15.2 × 46.34 = <span class="num">$704.37</span></li>
+          <li><b>轉換價格</b> = 1,000 ÷ 15.2 = <span class="num">$65.79</span></li>
+          <li><b>轉換溢價</b> = (65.79 − 46.34)/46.34 = 19.45/46.34 = <span class="num">41.97%</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">轉換價值 $704.37 · 轉換價格 $65.79 · 溢價 41.97%</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">24.4</span><span class="qttl">可轉債綜合計算</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Wilder 可轉債面額 <span class="g">$1,000</span>,每張可轉 <span class="g">18.4</span> 股,股價 <span class="g">$34.86</span>。求 <b>(a)</b> 轉換比率 <b>(b)</b> 轉換價格 <b>(c)</b> 轉換溢價 <b>(d)</b> 轉換價值 <b>(e)</b> 股價上漲 $2 後的轉換價值。
+        <div class="qbox-en"><b>(English)</b> Wilder's convertible bond has a $1,000 face value, converts into 18.4 shares, and the stock trades at $34.86. Find (a) the conversion ratio, (b) the conversion price, (c) the conversion premium, (d) the conversion value, and (e) the conversion value if the stock rises by $2.</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>(a) 轉換比率</b> = <span class="num">18.4</span></li>
+          <li><b>(b) 轉換價格</b> = 1,000 ÷ 18.4 = <span class="num">$54.35</span></li>
+          <li><b>(c) 轉換溢價</b> = (54.35 − 34.86)/34.86 = <span class="num">55.90%</span></li>
+          <li><b>(d) 轉換價值</b> = 18.4 × 34.86 = <span class="num">$641.42</span></li>
+          <li><b>(e) 股價 +$2</b> → 36.86;新轉換價值 = 18.4 × 36.86 = <span class="num">$678.22</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 18.4 (b) $54.35 (c) 55.90% (d) $641.42 (e) $678.22</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">24.5</span><span class="qttl">認股權證最低價值</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">認股權證持有人可用履約價 <span class="g">$64</span> 購入股票,股價 <span class="g">$71</span>,每張權證可換 <span class="g">3</span> 股。求權證的最低(內含)價值。
+        <div class="qbox-en"><b>(English)</b> A warrant lets the holder buy stock at an exercise price of $64. The stock currently trades at $71, and each warrant is for 3 shares. What is the minimum (intrinsic) value of the warrant?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>權證最低值</b> = 立刻履約能賺的金額 =(股價 − 履約價)× 每張換股數;若為負則為 0。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">最低值 = max(S − X, 0) × 每張換股數</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li>每股內含值 = 71 − 64 = <span class="num">7</span></li>
+          <li>最低值 = 7 × 3 = <span class="num">$21</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">最低值 = $21</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">24.6</span><span class="qttl">哪個情境較合理</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">比較兩情境下可轉債的市價與其「直債價值」:情境 A 市價 $1,000 &gt; 直債值 $900;情境 B 市價 $900 &lt; 直債值 $950。判斷哪個較合理。
+        <div class="qbox-en"><b>(English)</b> Compare a convertible bond's market price with its straight bond value in two scenarios: A — market price $1,000 vs straight value $900; B — market price $900 vs straight value $950. Which scenario is more reasonable?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">可轉債市價有<b>下限</b> = 直債價值與轉換價值中較高者。就算不轉換,它作為普通債券就值「直債價值」,還附帶一個只會加分的轉換選擇權。市價低於直債價值等於有套利,不會持續。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">可轉債市價 ≥ max(直債價值, 轉換價值)</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>情境 A</b>:1,000 &gt; 900 → 合理(地板之上,高出部分反映轉換權)。</li>
+          <li><b>情境 B</b>:900 &lt; 950 → <b>不合理</b>(跌破地板)。</li>
+          <li>結論:<b>情境 A 較可能</b>。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">情境 A 較合理(市價不會低於直債價值底線)</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch26 營運資金 ========== -->
+<section id="ch26">
+  <div class="sec-head"><span class="ch">26</span><h2>現金與營運資金管理</h2>
+    <span class="tag">現金循環 · 收款/付款排程 · 現金預算</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">26.2</span><span class="qttl">期末現金與流動資產</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">由資產負債表項目(權益、長期負債、固定資產與淨營運資金關係)推算期末現金;再由流動負債推算流動資產。已知合計項 <span class="g">8,300 + 14,735</span>、固定資產 <span class="g">18,440</span>、其他項 <span class="g">2,850</span>、流動負債 <span class="g">2,325</span>。
+        <div class="qbox-en"><b>(English)</b> Using the balance-sheet identity (equity, long-term debt, fixed assets, and net working capital), solve for ending cash, then for current assets. Given components are 8,300 + 14,735, fixed assets 18,440, an other item 2,850, and current liabilities 2,325.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">用恆等式:現金 + 其他流動資產 + 固定資產 = 流動負債 + 長期負債 + 權益。移項解現金,再用「其他流動資產 = 流動負債 + 淨營運資金差額」回推流動資產。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">現金 + 其他流動資產 + 固定資產 = 流動負債 + 長期負債 + 權益</div>
+          <div class="fline">流動資產 = 現金 + 其他流動資產</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>期末現金</b> = 8,300 + 14,735 − 18,440 − 2,850 = <span class="num">$1,745</span></li>
+          <li><b>流動資產</b> = 1,745 + (2,325 + 2,850) = 1,745 + 5,175 = <span class="num">$6,920</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">期末現金 $1,745 · 流動資產 $6,920</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">26.5</span><span class="qttl">應收帳款收現排程</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Morning Jolt 期初應收 <span class="g">$335</span>,四季銷貨 <span class="g">Q1 750、Q2 810、Q3 890、Q4 980</span>。分別求 <b>45 天</b>、<b>60 天</b>、<b>30 天</b> 收款政策下各季現金收現。(每季 90 天)
+        <div class="qbox-en"><b>(English)</b> Morning Jolt begins with $335 in receivables. Quarterly sales are 750, 810, 890, and 980. Compute the cash collections each quarter under a 45-day, a 60-day, and a 30-day collection period (each quarter is 90 days).</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">當季收回比例 = (90 − 收款天數)/90:45 天→當季 ½;30 天→⅔;60 天→⅓。期初應收於第一季收回。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">當季收回比例 = (90 − 收款天數) ÷ 90</div>
+          <div class="fline">當季收現 = 上季未收 + 當季收回比例 × 當季銷貨</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 45 天(當季收 ½)</span>
+        <ol class="steps">
+          <li>Q1 = 335 + ½×750 = <span class="num">710</span></li>
+          <li>Q2 = ½×750 + ½×810 = <span class="num">780</span></li>
+          <li>Q3 = ½×810 + ½×890 = <span class="num">850</span></li>
+          <li>Q4 = ½×890 + ½×980 = <span class="num">935</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">三種政策彙整(收現)</span>
+        <table class="mini">
+          <tr><th>政策</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+          <tr><td>45 天(當季 ½)</td><td>710</td><td>780</td><td>850</td><td>935</td></tr>
+          <tr><td>60 天(當季 ⅓)</td><td>585</td><td>770</td><td>836.67</td><td>920</td></tr>
+          <tr><td>30 天(當季 ⅔)</td><td>835</td><td>790</td><td>863.33</td><td>950</td></tr>
+        </table>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin:.4em 0 0">範例(60 天 Q2)= ⅔×750 + ⅓×810 = 770;(30 天 Q2)= ⅓×750 + ⅔×810 = 790。</p></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">見上表(45/60/30 天各季收現)</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">26.6</span><span class="qttl">營運循環與現金循環</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Newk 公司:平均存貨 <span class="g">14,025</span>、平均應收 <span class="g">6,203.5</span>、平均應付 <span class="g">8,535</span>;COGS <span class="g">79,218</span>、銷貨 <span class="g">143,187</span>。求營運循環與現金循環(天數)。
+        <div class="qbox-en"><b>(English)</b> Newk Corp. has average inventory of 14,025, average receivables of 6,203.5, average payables of 8,535, COGS of 79,218, and sales of 143,187. Find the operating cycle and the cash cycle in days.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>營運循環</b> = 存貨期間 + 應收期間(進貨→賣出→收現的總天數)。<b>現金循環</b> = 營運循環 − 應付期間(真正自己掏錢的天數)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">存貨期間 = 平均存貨 ÷ (COGS ÷ 365)</div>
+          <div class="fline">應收期間 = 平均AR ÷ (銷貨 ÷ 365)</div>
+          <div class="fline">應付期間 = 平均AP ÷ (COGS ÷ 365)</div>
+          <div class="fline">營運循環 = 存貨期間 + 應收期間</div>
+          <div class="fline">現金循環 = 營運循環 − 應付期間</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>存貨期間</b> = 14,025 ÷ (79,218/365) = 14,025 ÷ 217.036 = <span class="num">64.6207 天</span></li>
+          <li><b>應收期間</b> = 6,203.5 ÷ (143,187/365) = 6,203.5 ÷ 392.293 = <span class="num">15.8134 天</span></li>
+          <li><b>營運循環</b> = 64.6207 + 15.8134 = <span class="num">80.4341 天</span></li>
+          <li><b>應付期間</b> = 8,535 ÷ 217.036 = <span class="num">39.3253 天</span></li>
+          <li><b>現金循環</b> = 80.4341 − 39.3253 = <span class="num">41.1088 天</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">營運循環 ≈ 80.43 天 · 現金循環 ≈ 41.11 天</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">26.8</span><span class="qttl">現金支出排程</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Bandon Pine 採購 = <b>次季</b>銷貨的 <span class="g">75%</span>,應付期 <span class="g">60</span> 天,工資為銷貨的 <span class="g">20%</span>,固定長期融資支出 <span class="g">110</span>/季。各季銷貨 Q1~Q4 = <span class="g">1,925 / 2,460 / 2,120 / 1,850</span>,次年 Q1 = <span class="g">1,950</span>。求各季現金總支出。
+        <div class="qbox-en"><b>(English)</b> Bandon Pine's purchases equal 75 percent of next quarter's sales, with a 60-day payables period. Wages are 20 percent of sales and fixed long-term financing outlays are 110 per quarter. Sales for Q1–Q4 are 1,925 / 2,460 / 2,120 / 1,850 and next-year Q1 is 1,950. Find total cash outlays each quarter.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">採購 = 0.75 × 次季銷貨。60 天付款(90 天季)→ 付當季採購 ⅓ + 上季採購 ⅔。再加工資(銷貨 20%)與固定融資支出。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">採購 = 0.75 × 次季銷貨</div>
+          <div class="fline">付供應商 = ⅓ × 當季採購 + ⅔ × 上季採購</div>
+          <div class="fline">總支出 = 付供應商 + 工資(銷貨 20%) + 固定融資</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 先算採購</span>
+        <ol class="steps">
+          <li>前一年 Q4 採購 = 0.75×1,925 = <span class="num">1,443.75</span></li>
+          <li>Q1 = 0.75×2,460 = 1,845;Q2 = 0.75×2,120 = 1,590;Q3 = 0.75×1,850 = 1,387.5;Q4 = 0.75×1,950 = 1,462.5</li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">付供應商(⅓ 當季 + ⅔ 上季)</span>
+        <ol class="steps">
+          <li>Q1 = ⅓×1,845 + ⅔×1,443.75 = 615 + 962.5 = <span class="num">1,577.5</span></li>
+          <li>Q2 = ⅓×1,590 + ⅔×1,845 = 530 + 1,230 = <span class="num">1,760</span></li>
+          <li>Q3 = ⅓×1,387.5 + ⅔×1,590 = 462.5 + 1,060 = <span class="num">1,522.5</span></li>
+          <li>Q4 = ⅓×1,462.5 + ⅔×1,387.5 = 487.5 + 925 = <span class="num">1,412.5</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">加工資與固定融資 → 總支出</span>
+        <table class="mini">
+          <tr><th>項目</th><th>Q1</th><th>Q2</th><th>Q3</th><th>Q4</th></tr>
+          <tr><td>付供應商</td><td>1,577.5</td><td>1,760</td><td>1,522.5</td><td>1,412.5</td></tr>
+          <tr><td>工資(銷貨 20%)</td><td>385</td><td>492</td><td>424</td><td>370</td></tr>
+          <tr><td>長期融資</td><td>110</td><td>110</td><td>110</td><td>110</td></tr>
+          <tr><td><b>總支出</b></td><td><b>2,072.5</b></td><td><b>2,362</b></td><td><b>2,056.5</b></td><td><b>1,892.5</b></td></tr>
+        </table></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">總支出 Q1 2,072.5 / Q2 2,362 / Q3 2,056.5 / Q4 1,892.5</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">26.10</span><span class="qttl">現金預算</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Nashville Nougats 4 月初現金 <span class="g">$125,000</span>。收款:當月 <span class="g">35%</span>、次月 <span class="g">60%</span>、<span class="g">5%</span> 永不回收;採購於<b>次月</b>付款。3 月銷貨 <span class="g">245,300</span>、3 月採購 <span class="g">149,300</span>。編 4–6 月現金預算,求各月期末現金。
+        <div class="qbox-en"><b>(English)</b> Nashville Nougats begins April with $125,000 in cash. Collections are 35 percent in the month of sale, 60 percent the next month, and 5 percent never collected; purchases are paid the following month. March sales were 245,300 and March purchases 149,300. Prepare the April–June cash budget and find each month's ending cash.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>現金預算</b> = 期初現金 + 當月收款 − 當月支出 = 期末現金,逐月滾動(上月期末 = 下月期初)。收款 = 0.35×當月銷貨 + 0.60×上月銷貨(5% 壞帳)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">當月收款 = 0.35 × 當月銷貨 + 0.60 × 上月銷貨</div>
+          <div class="fline">期末現金 = 期初現金 + 收款 − 支出</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 — 收款範例(4 月)</span>
+        <ol class="steps">
+          <li>4 月收款 = 0.35×(4 月銷貨) + 0.60×(3 月銷貨 245,300)<br>其中 0.60×245,300 = 147,180,合計後 = <span class="num">272,270</span></li>
+          <li>5、6 月同法逐月計算。</li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">現金預算表(逐月滾動)</span>
+        <table class="mini">
+          <tr><th>項目</th><th>4 月</th><th>5 月</th><th>6 月</th></tr>
+          <tr><td>期初現金</td><td>125,000</td><td>99,870</td><td>100,985</td></tr>
+          <tr><td>+ 收款</td><td>272,270</td><td>334,315</td><td>346,410</td></tr>
+          <tr><td>− 支出</td><td>297,400</td><td>333,200</td><td>247,000</td></tr>
+          <tr><td><b>期末現金</b></td><td><b>99,870</b></td><td><b>100,985</b></td><td><b>200,395</b></td></tr>
+        </table>
+        <p style="font-size:.88rem;color:var(--ink-soft);margin:.4em 0 0">滾動:4 月 125,000+272,270−297,400=99,870;5 月 99,870+334,315−333,200=100,985;6 月 100,985+346,410−247,000=200,395。</p></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">期末現金 4月 $99,870 · 5月 $100,985 · 6月 $200,395</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== Ch29 併購 ========== -->
+<section id="ch29">
+  <div class="sec-head"><span class="ch">29</span><h2>併購</h2>
+    <span class="tag">綜效 · 收購成本/NPV · 購買法 · EPS</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">29.1</span><span class="qttl">最低綜效</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">某公司願出 <span class="g">$197M</span> 收購一家獨立價值 <span class="g">$178M</span> 的公司。要使收購划算,最少需多少綜效?
+        <div class="qbox-en"><b>(English)</b> An acquirer offers $197 million for a target with a standalone value of $178 million. What is the minimum synergy required for the acquisition to make sense?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>綜效</b> = 合併後整體價值 −(兩家獨立價值之和)。收購價超過被併方獨立價值的部分是<b>溢價</b>;綜效 ≥ 溢價,收購才不虧。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">最低綜效 = 收購價 − 被併方獨立價值</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li>溢價 = 197 − 178 = <span class="num">$19M</span></li>
+          <li>使 NPV ≥ 0 → 最低綜效 = <span class="num">$19M</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">最低綜效 = $19 million</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">29.2</span><span class="qttl">購買法合併資產負債表</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Firm X 以發行 <span class="g">$180,000</span> 長期負債(每股 <span class="g">$20</span> × Y 的 9,000 股)收購 Firm Y。Y 資產公允價值 <span class="g">$135,000</span>;X 自有資產 <span class="g">$120,000</span>、權益 <span class="g">$120,000</span>。用購買法編合併後資產負債表並算商譽。
+        <div class="qbox-en"><b>(English)</b> Firm X acquires Firm Y by issuing $180,000 of long-term debt ($20 per share × Y's 9,000 shares). Y's assets have a fair market value of $135,000; X has $120,000 of assets and $120,000 of equity. Using the purchase method, prepare the post-merger balance sheet and compute goodwill.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>購買法</b>:被併方資產按<b>公允價值</b>入帳;收購價超過「取得淨資產公允價值」的部分認列為<b>商譽</b>。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox"><div class="fline">商譽 = 收購價 − 取得淨資產的公允價值</div></div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>取得 Y 資產 FMV</b> = $135,000</li>
+          <li><b>商譽</b> = 180,000 − 135,000 = <span class="num">$45,000</span></li>
+          <li><b>合併後總資產</b> = 120,000 + 135,000 + 45,000 = <span class="num">$300,000</span></li>
+          <li><b>負債 + 權益</b> = 180,000 + 120,000 = <span class="num">$300,000</span></li>
+        </ol>
+        <table class="mini">
+          <tr><th>合併後資產</th><th>金額</th><th>負債 + 權益</th><th>金額</th></tr>
+          <tr><td>X 資產</td><td>120,000</td><td>長期負債</td><td>180,000</td></tr>
+          <tr><td>Y 資產(FMV)</td><td>135,000</td><td>權益</td><td>120,000</td></tr>
+          <tr><td>商譽</td><td>45,000</td><td></td><td></td></tr>
+          <tr><td><b>合計</b></td><td><b>300,000</b></td><td><b>合計</b></td><td><b>300,000</b></td></tr>
+        </table></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">商譽 $45,000;總資產 = 總負債權益 = $300,000</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">29.5</span><span class="qttl">現金 vs 股票收購的成本與 NPV</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Penn 收購 Teller。綜效為永續現金流 <span class="g">$1.45M</span>/年,折現率 <span class="g">10%</span>。Teller 獨立價值 <span class="g">$31.5M</span>,Penn 獨立價值 <span class="g">$53M</span>。可付 <span class="g">$44.5M</span> 現金,或給合併後公司 <span class="g">40%</span> 股權。<b>(a)</b> 兩方案成本 <b>(b)</b> 各自 NPV <b>(c)</b> 選哪個?
+        <div class="qbox-en"><b>(English)</b> Penn acquires Teller. Synergy is a perpetuity of $1.45 million per year discounted at 10 percent. Teller's standalone value is $31.5 million and Penn's is $53 million. Penn can pay $44.5 million cash or give 40 percent of the combined firm in stock. (a) Cost of each method? (b) NPV of each? (c) Which should Penn choose?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box"><b>現金成本</b> = 付出現金(固定)。<b>股票成本</b> = 股權比例 × 合併後總值(隨綜效變動)。NPV = 被併方對買方的價值(含綜效) − 成本。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">綜效 PV = 年綜效 ÷ 折現率</div>
+          <div class="fline">V<span class="var">T</span>* = Teller 獨立價值 + 綜效</div>
+          <div class="fline">股票成本 = 股權比例 × 合併後總值</div>
+          <div class="fline">NPV = V<span class="var">T</span>* − 成本</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>綜效現值</b> = 1.45M ÷ 0.10 = <span class="num">$14.5M</span></li>
+          <li><b>Teller 對 Penn 的價值</b> V<sub>T</sub>* = 31.5 + 14.5 = <span class="num">$46M</span></li>
+          <li><b>合併後總值</b> = 53 + 31.5 + 14.5 = <span class="num">$99M</span></li>
+          <li><b>(a) 成本</b>:現金 = <span class="num">$44.5M</span>;股票 = 40%×99 = <span class="num">$39.6M</span></li>
+          <li><b>(b) NPV</b>:現金 = 46 − 44.5 = <span class="num">$1.5M</span>;股票 = 46 − 39.6 = <span class="num">$6.4M</span></li>
+          <li><b>(c)</b> 股票 NPV 較高 → <b>選股票收購</b>。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) 現金 $44.5M / 股票 $39.6M (b) NPV $1.5M / $6.4M (c) 選股票</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">29.6</span><span class="qttl">換股併購的 EPS 與本益比</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Bread(本益比 <span class="g">7.2</span>、<span class="g">73,000</span> 股、盈餘 <span class="g">$210,000</span>)與 Butter(本益比 <span class="g">14.4</span>、<span class="g">146,000</span> 股、盈餘 <span class="g">$630,000</span>)合併,每 <span class="g">3</span> 股 Bread 換 <span class="g">1</span> 股 Butter。<b>(a)</b> 合併後 EPS、股價、本益比(無綜效)<b>(b)</b> Butter 須相信多少綜效才值得?
+        <div class="qbox-en"><b>(English)</b> Bread (P/E 7.2, 73,000 shares, earnings $210,000) merges with Butter (P/E 14.4, 146,000 shares, earnings $630,000); Bread holders get 1 Butter share for every 3 Bread shares. (a) Find the post-merger EPS, share price, and P/E assuming no synergy. (b) How much synergy must Butter believe in for the deal to be worthwhile?</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">換股後 EPS = 合併後總盈餘 ÷ 合併後總股數。若市場認為<b>無綜效</b>,合併後總值 = 兩家市值之和,本益比被攤平到中間。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">新發股數 = Bread 股數 ÷ 換股比(3)</div>
+          <div class="fline">合併後 EPS = (兩家盈餘合計) ÷ 合併後總股數</div>
+          <div class="fline">合併後股價 = 合併後總值 ÷ 合併後總股數</div>
+          <div class="fline">本益比 = 股價 ÷ EPS</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解 (a)</span>
+        <ol class="steps">
+          <li><b>新發股數</b> = 73,000 ÷ 3 = <span class="num">24,333.33</span></li>
+          <li><b>合併後總股數</b> = 146,000 + 24,333.33 = <span class="num">170,333.33</span></li>
+          <li><b>合併後盈餘</b> = 210,000 + 630,000 = 840,000 → <b>EPS</b> = 840,000/170,333.33 = <span class="num">$4.93</span></li>
+          <li><b>無綜效合併後總值</b> = 14.4×630,000 + 7.2×210,000 = 9,072,000 + 1,512,000 = <span class="num">10,584,000</span></li>
+          <li><b>股價</b> = 10,584,000/170,333.33 = <span class="num">$62.14</span>;<b>本益比</b> = 62.14/4.93 = <span class="num">12.60</span></li>
+        </ol></div>
+      <div class="blk"><span class="lbl steps">詳解 (b)</span>
+        <ol class="steps">
+          <li><b>Butter 取得 Bread 的成本</b> = 新股價值 = 24,333.33×62.14 ≈ 1,512,000 = Bread 獨立市值。</li>
+          <li>→ 零綜效下 NPV = 0;Butter 須相信<b>綜效 &gt; 0</b> 才有正 NPV。</li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) EPS $4.93、股價 $62.14、本益比 12.60 (b) 須相信綜效 &gt; 0</span></div>
+    </div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">29.8</span><span class="qttl">現金 vs 股票:NPV、每股價、溢價</span></summary>
+    <div class="body">
+      <div class="blk"><span class="lbl q">題目</span>
+        <div class="qbox">Firm B(<span class="g">6,400</span> 股 @ <span class="g">$53</span> = $339,200)收購 Firm T(<span class="g">1,500</span> 股 @ <span class="g">$19</span> = $28,500),綜效 <span class="g">$17,000</span>。<b>(a)</b> 每股付 <span class="g">$23</span> 現金的 NPV <b>(b)</b> 現金後每股價 <b>(c)</b> 溢價 <b>(d)</b> 1 換 2 換股後每股價 <b>(e)</b> 換股的 NPV。
+        <div class="qbox-en"><b>(English)</b> Firm B (6,400 shares @ $53 = $339,200) acquires Firm T (1,500 shares @ $19 = $28,500); synergy is $17,000. (a) NPV if B pays $23 per share in cash. (b) Post-acquisition price per share under cash. (c) Merger premium. (d) Price per share under a 1-for-2 stock deal. (e) NPV of the stock deal.</div></div></div>
+      <div class="blk"><span class="lbl concept">觀念</span>
+        <div class="concept-box">被併方對買方價值 = T 獨立價值 + 綜效。現金成本固定;股票成本 = 給出新股 × 合併後每股價(隨價值變動)。</div></div>
+      <div class="blk"><span class="lbl formula">公式</span>
+        <div class="fbox">
+          <div class="fline">T 對 B 的價值 = V<span class="var">T</span> + 綜效</div>
+          <div class="fline">現金 NPV = (V<span class="var">T</span> + 綜效) − 付出現金</div>
+          <div class="fline">合併後每股價 = 合併後總值 ÷ 合併後股數</div>
+          <div class="fline">股票 NPV = (V<span class="var">T</span> + 綜效) − 新股數 × 合併後每股價</div>
+        </div></div>
+      <div class="blk"><span class="lbl steps">詳解</span>
+        <ol class="steps">
+          <li><b>T 對 B 的價值</b> = 28,500 + 17,000 = <span class="num">45,500</span></li>
+          <li><b>(a) 現金 $23/股</b>:成本 = 1,500×23 = 34,500;NPV = 45,500 − 34,500 = <span class="num">$11,000</span></li>
+          <li><b>(b) 現金後每股價</b> = (339,200 − 34,500 + 45,500) ÷ 6,400 = 350,200 ÷ 6,400 = <span class="num">$54.7188</span></li>
+          <li><b>(c) 溢價</b> = 34,500 − 28,500 = <span class="num">$6,000</span></li>
+          <li><b>(d) 股票 1 換 2</b>:新發 B 股 = 1,500 ÷ 2 = 750;合併後股數 = 7,150;合併後總值 = 339,200 + 28,500 + 17,000 = 384,700;每股價 = 384,700 ÷ 7,150 = <span class="num">$53.8042</span></li>
+          <li><b>(e) 換股 NPV</b>:成本 = 750 × 53.8042 = 40,353.15;NPV = 45,500 − 40,353.15 = <span class="num">$5,146.85</span></li>
+        </ol></div>
+      <div class="ans"><span class="lbl-a">答案</span><span class="val">(a) $11,000 (b) $54.7188 (c) $6,000 (d) $53.8042 (e) $5,146.85</span></div>
+    </div>
+  </details>
+</section>
+
+<!-- ========== 公式速查 ========== -->
+<section id="cheat">
+  <div class="sec-head"><span class="ch">📋</span><h2>公式速查表</h2>
+    <span class="tag">考前快速複習</span></div>
+
+  <details class="card" open>
+    <summary><span class="qno">資金成本</span><span class="qttl">Ch13 · CAPM / WACC</span></summary>
+    <div class="body"><div class="fbox">
+R<span class="var">E</span> = R<span class="var">f</span> + β(R<span class="var">m</span> − R<span class="var">f</span>)        ← CAPM
+WACC = (E/V)R<span class="var">E</span> + (D/V)R<span class="var">D</span>(1−T<span class="var">c</span>)
+D/V + E/V = 1 ; D/E = D ÷ E
+稅前 R<span class="var">D</span> = 債券 YTM(以現價解)</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">APV/槓桿</span><span class="qttl">Ch18 · APV、槓桿 β、稅盾</span></summary>
+    <div class="body"><div class="fbox">
+APV = Base NPV + 融資副效果
+UCF = PBTD(1−T<span class="var">c</span>) + 折舊·T<span class="var">c</span>
+利息稅盾 = 負債·利率·T<span class="var">c</span>(只付息債永續或年金)
+β<span class="var">E</span> = β<span class="var">A</span>[1 + (1−T<span class="var">c</span>)(D/E)]   ← levering
+全權益折現率 = R<span class="var">E</span> ; 永續 PV = CF / WACC</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">股利</span><span class="qttl">Ch19 · 除息、股票股利、分割</span></summary>
+    <div class="body"><div class="fbox">
+除息價 = P<span class="var">0</span> − 股利·(1−稅率)
+小額股票股利:依市價轉 RE → 股本+資本公積
+分割/反分割:只改股數與面額,金額不變
+分割後股價 = 原市值 / 新股數</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">選擇權</span><span class="qttl">Ch22/23 · 平價、Black‑Scholes、二項式</span></summary>
+    <div class="body"><div class="fbox">
+平價:C + E·e<span class="var">−Rt</span> = P + S
+d<span class="var">1</span> = [ln(S/E) + (R + σ²/2)t] / (σ√t)
+d<span class="var">2</span> = d<span class="var">1</span> − σ√t
+C = S·N(d<span class="var">1</span>) − E·e<span class="var">−Rt</span>·N(d<span class="var">2</span>)
+買權 Delta = N(d<span class="var">1</span>) ; 賣權 Delta = N(d<span class="var">1</span>)−1
+二項式:p = [(1+R<span class="var">f</span>)−d]/(u−d)
+        C = [p·C<span class="var">u</span> + (1−p)·C<span class="var">d</span>]/(1+R<span class="var">f</span>)</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">可轉債</span><span class="qttl">Ch24 · 轉換與權證</span></summary>
+    <div class="body"><div class="fbox">
+轉換價格 = 面額 / 轉換比率
+轉換價值 = 轉換比率 × 股價
+轉換溢價 = (轉換價格 − 股價) / 股價
+權證最低值 = max(S−X,0) × 換股數
+可轉債市價下限 = max(直債價值, 轉換價值)</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">營運資金</span><span class="qttl">Ch26 · 循環與排程</span></summary>
+    <div class="body"><div class="fbox">
+存貨期間 = 平均存貨 / (COGS/365)
+應收期間 = 平均AR / (銷貨/365)
+應付期間 = 平均AP / (COGS/365)
+營運循環 = 存貨期間 + 應收期間
+現金循環 = 營運循環 − 應付期間
+收款:45天收½、60天收⅓、30天收⅔(其餘下期)</div></div>
+  </details>
+
+  <details class="card" open>
+    <summary><span class="qno">併購</span><span class="qttl">Ch29 · 綜效、成本、NPV、EPS</span></summary>
+    <div class="body"><div class="fbox">
+綜效 = V<span class="var">AB</span> − (V<span class="var">A</span> + V<span class="var">B</span>)
+V<span class="var">T</span>* = V<span class="var">T</span> + 綜效
+成本(現金)= 付出現金
+成本(股票)= 給對方股權比例 × 合併後總值
+NPV = V<span class="var">T</span>* − 成本
+商譽 = 收購價 − 取得淨資產 FMV
+換股 EPS = 合併盈餘 / 合併後總股數</div></div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  公司理財期末複習 · 涵蓋 Ch13/18/19/22/23/24/26/29 · 所有數值取至小數第 4 位。
+  N(d₁)、N(d₂) 一律以上方互動工具線性內插查表。Black‑Scholes 折現使用連續複利 e<sup>−Rt</sup>。
+  考試加油 💪
+</footer>
+
+<button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂端">↑</button>
+
 <script>
-"use strict";
-/* ---------- state / persistence ---------- */
-var SKEY='corpfin_review_v1';
-var state=load();
-function load(){
-  try{var s=JSON.parse(localStorage.getItem(SKEY));if(s&&s.attempts)return s;}catch(e){}
-  return {attempts:{}, starred:{}};
+const NTABLE=[
+  [0.5000,0.5040,0.5080,0.5120,0.5160,0.5199,0.5239,0.5279,0.5319,0.5359],
+  [0.5398,0.5438,0.5478,0.5517,0.5557,0.5596,0.5636,0.5675,0.5714,0.5753],
+  [0.5793,0.5832,0.5871,0.5910,0.5948,0.5987,0.6026,0.6064,0.6103,0.6141],
+  [0.6179,0.6217,0.6255,0.6293,0.6331,0.6368,0.6406,0.6443,0.6480,0.6517],
+  [0.6554,0.6591,0.6628,0.6664,0.6700,0.6736,0.6772,0.6808,0.6844,0.6879],
+  [0.6915,0.6950,0.6985,0.7019,0.7054,0.7088,0.7123,0.7157,0.7190,0.7224],
+  [0.7257,0.7291,0.7324,0.7357,0.7389,0.7422,0.7454,0.7486,0.7517,0.7549],
+  [0.7580,0.7611,0.7642,0.7673,0.7704,0.7734,0.7764,0.7794,0.7823,0.7852],
+  [0.7881,0.7910,0.7939,0.7967,0.7995,0.8023,0.8051,0.8078,0.8106,0.8133],
+  [0.8159,0.8186,0.8212,0.8238,0.8264,0.8289,0.8315,0.8340,0.8365,0.8389],
+  [0.8413,0.8438,0.8461,0.8485,0.8508,0.8531,0.8554,0.8577,0.8599,0.8621],
+  [0.8643,0.8665,0.8686,0.8708,0.8729,0.8749,0.8770,0.8790,0.8810,0.8830],
+  [0.8849,0.8869,0.8888,0.8907,0.8925,0.8944,0.8962,0.8980,0.8997,0.9015],
+  [0.9032,0.9049,0.9066,0.9082,0.9099,0.9115,0.9131,0.9147,0.9162,0.9177],
+  [0.9192,0.9207,0.9222,0.9236,0.9251,0.9265,0.9279,0.9292,0.9306,0.9319],
+  [0.9332,0.9345,0.9357,0.9370,0.9382,0.9394,0.9406,0.9418,0.9429,0.9441],
+  [0.9452,0.9463,0.9474,0.9484,0.9495,0.9505,0.9515,0.9525,0.9535,0.9545],
+  [0.9554,0.9564,0.9573,0.9582,0.9591,0.9599,0.9608,0.9616,0.9625,0.9633],
+  [0.9641,0.9649,0.9656,0.9664,0.9671,0.9678,0.9686,0.9693,0.9699,0.9706],
+  [0.9713,0.9719,0.9726,0.9732,0.9738,0.9744,0.9750,0.9756,0.9761,0.9767],
+  [0.9772,0.9778,0.9783,0.9788,0.9793,0.9798,0.9803,0.9808,0.9812,0.9817],
+  [0.9821,0.9826,0.9830,0.9834,0.9838,0.9842,0.9846,0.9850,0.9854,0.9857],
+  [0.9861,0.9864,0.9868,0.9871,0.9875,0.9878,0.9881,0.9884,0.9887,0.9890],
+  [0.9893,0.9896,0.9898,0.9901,0.9904,0.9906,0.9909,0.9911,0.9913,0.9916],
+  [0.9918,0.9920,0.9922,0.9925,0.9927,0.9929,0.9931,0.9932,0.9934,0.9936],
+  [0.9938,0.9940,0.9941,0.9943,0.9945,0.9946,0.9948,0.9949,0.9951,0.9952],
+  [0.9953,0.9955,0.9956,0.9957,0.9959,0.9960,0.9961,0.9962,0.9963,0.9964],
+  [0.9965,0.9966,0.9967,0.9968,0.9969,0.9970,0.9971,0.9972,0.9973,0.9974],
+  [0.9974,0.9975,0.9976,0.9977,0.9977,0.9978,0.9979,0.9979,0.9980,0.9981],
+  [0.9981,0.9982,0.9982,0.9983,0.9984,0.9984,0.9985,0.9985,0.9986,0.9986],
+  [0.9987,0.9987,0.9987,0.9988,0.9988,0.9989,0.9989,0.9989,0.9990,0.9990],
+  [0.9990,0.9991,0.9991,0.9991,0.9992,0.9992,0.9992,0.9992,0.9993,0.9993],
+  [0.9993,0.9993,0.9994,0.9994,0.9994,0.9994,0.9994,0.9995,0.9995,0.9995],
+  [0.9995,0.9995,0.9995,0.9996,0.9996,0.9996,0.9996,0.9996,0.9996,0.9997],
+  [0.9997,0.9997,0.9997,0.9997,0.9997,0.9997,0.9997,0.9997,0.9997,0.9998],
+  [0.9998,0.9998,0.9998,0.9998,0.9998,0.9998,0.9998,0.9998,0.9998,0.9998],
+  [0.9998,0.9998,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999],
+  [0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999],
+  [0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999,0.9999],
+  [1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000],
+  [1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000,1.0000]
+];
+
+// 查正值 x 的 N(x):x0 = 截到小數第2位,x1 = x0+0.01
+function lookupPos(x){
+  // x >= 0
+  const row = Math.round(x*10)/10;          // 整數位+第1位小數
+  // 用 row 與 col 直接定位:row index = round(floor 到0.1)*? 用更穩健方式
+  const r = Math.floor(x*10);               // 0.1 單位
+  const c = Math.round((x - r/10)*100);     // 第2位小數
+  let rr=r, cc=c;
+  if(cc>9){rr+=1;cc=0;}
+  if(rr>=NTABLE.length){rr=NTABLE.length-1;cc=9;}
+  return NTABLE[rr][cc];
 }
-function save(){try{localStorage.setItem(SKEY,JSON.stringify(state));}catch(e){}}
+function Nval(x){ return x>=0 ? lookupPos(x) : 1 - lookupPos(-x); }
 
-var LESSONS=window.LESSONS||[], QUESTIONS=window.QUESTIONS||[];
-var Q_BY_ID={}; QUESTIONS.forEach(function(q){Q_BY_ID[q.id]=q;});
-var UNIT_TITLE={}; LESSONS.forEach(function(u){UNIT_TITLE[u.key]={code:u.code,zh:u.title_zh,en:u.title_en};});
+function fmt2(v){return v.toFixed(2);}
+function f4(v){return v.toFixed(4);}
 
-/* ---------- derived sets ---------- */
-function isAnswered(id){return !!state.attempts[id];}
-function isWrong(id){var a=state.attempts[id];return a&&a.correct===false;}
-function isStarred(id){return !!state.starred[id];}
-function unansweredIds(filterFn){return QUESTIONS.filter(function(q){return !isAnswered(q.id)&&(!filterFn||filterFn(q));}).map(function(q){return q.id;});}
-function wrongIds(){return QUESTIONS.filter(function(q){return isWrong(q.id);}).map(function(q){return q.id;});}
-function starredIds(){return QUESTIONS.filter(function(q){return isStarred(q.id);}).map(function(q){return q.id;});}
-
-/* ---------- helpers ---------- */
-function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e;}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function para(s){ // \n\n -> paragraphs, \n -> line break, escaped
-  if(s==null)return '';
-  return String(s).split(/\n\s*\n/).map(function(blk){
-    return '<p>'+esc(blk).replace(/\n/g,'<br>')+'</p>';
-  }).join('');
-}
-function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function renderTeX(root){
-  if(!window.katex)return;
-  root.querySelectorAll('[data-latex]').forEach(function(n){
-    try{katex.render(n.getAttribute('data-latex'),n,{throwOnError:false,displayMode:true});}
-    catch(e){n.textContent=n.getAttribute('data-latex');}
-  });
-}
-var DIFF_ZH={basic:'基本題',hard:'中上'};
-
-/* ---------- navigation ---------- */
-var current='learn', currentUnit=null;
-function setView(v,unit){
-  current=v; if(unit!==undefined)currentUnit=unit;
-  document.querySelectorAll('#mainnav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-view')===v);});
-  var titles={learn:'學習',quiz:'測驗',review:'錯題複習',todo:'未作答',progress:'進度'};
-  document.getElementById('topTitle').textContent=titles[v]||'';
-  closeRail();
-  refreshBadges();
-  var fn={learn:viewLearn,quiz:viewQuiz,review:viewReview,todo:viewTodo,progress:viewProgress}[v];
-  var host=document.getElementById('view'); host.innerHTML=''; fn(host);
-  host.scrollIntoView({block:'start'}); window.scrollTo(0,0);
-}
-function refreshBadges(){
-  document.getElementById('bdg-review').textContent=wrongIds().length+starredIds().length;
-  document.getElementById('bdg-todo').textContent=unansweredIds().length;
-}
-document.getElementById('mainnav').addEventListener('click',function(e){
-  var b=e.target.closest('button[data-view]'); if(b)setView(b.getAttribute('data-view'));
-});
-/* unit quick-nav */
-(function(){
-  var host=document.getElementById('unitnav');
-  host.appendChild(el('div','ti','單元 Units'));
-  LESSONS.forEach(function(u,i){
-    var b=el('button',null,'<span class="n">'+(i+1<10?'0':'')+(i+1)+'</span><span>'+esc(u.title_zh)+'</span>');
-    b.setAttribute('data-unit',u.key);
-    b.addEventListener('click',function(){setView('learn',u.key);
-      document.querySelectorAll('#unitnav button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');});
-    host.appendChild(b);
-  });
-})();
-function markUnitNav(key){document.querySelectorAll('#unitnav button').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-unit')===key);});}
-
-/* rail toggle (mobile) */
-function openRail(){document.getElementById('rail').classList.add('open');document.getElementById('scrim').classList.add('show');}
-function closeRail(){document.getElementById('rail').classList.remove('open');document.getElementById('scrim').classList.remove('show');}
-document.getElementById('hamb').addEventListener('click',openRail);
-document.getElementById('scrim').addEventListener('click',closeRail);
-
-/* ---------- LEARN ---------- */
-function viewLearn(host){
-  if(!currentUnit)currentUnit=LESSONS[0].key;
-  markUnitNav(currentUnit);
-  var u=LESSONS.filter(function(x){return x.key===currentUnit;})[0];
-  host.appendChild(el('div','pagehead','<div class="ey">學習 · Learn</div><h2>單元教學</h2><p>每個單元整理「定義、觀念、公式」，中英對照、逐項說明。左側可切換單元。</p>'));
-
-  var intro=el('div','unit-intro');
-  intro.innerHTML='<div class="lec">'+esc(u.code)+' · '+esc(u.lecture)+'</div>'+
-    '<h2>'+esc(u.title_en)+'</h2><div class="ti-zh">'+esc(u.title_zh)+'</div>'+
-    '<div class="en">'+para(u.intro_en)+'</div><div class="zh">'+para(u.intro_zh)+'</div>';
-  host.appendChild(intro);
-
-  u.cards.forEach(function(c){host.appendChild(cardEl(c));});
-
-  // unit switch buttons
-  var idx=LESSONS.map(function(x){return x.key;}).indexOf(currentUnit);
-  var nav=el('div','row');nav.style.marginTop='26px';
-  if(idx>0){var p=el('button','btn ghost','← '+esc(LESSONS[idx-1].title_zh));p.onclick=function(){setView('learn',LESSONS[idx-1].key);};nav.appendChild(p);}
-  if(idx<LESSONS.length-1){var n=el('button','btn',esc(LESSONS[idx+1].title_zh)+' →');n.onclick=function(){setView('learn',LESSONS[idx+1].key);};n.style.marginLeft='auto';nav.appendChild(n);}
-  host.appendChild(nav);
-  renderTeX(host);
-}
-function cardEl(c){
-  var t=c.t||'concept';
-  var card=el('div','card');
-  var label={def:'定義 Definition',concept:'觀念 Concept',formula:'公式 Formula'}[t]||'觀念';
-  card.appendChild(el('span','tag '+t,label));
-  if(c.badge)card.appendChild(el('span','badge-pin','★ '+esc(c.badge)));
-  if(t==='formula'){
-    card.appendChild(el('h3',null,esc(c.name_en||'')));
-    if(c.name_zh)card.appendChild(el('div','zhterm',esc(c.name_zh)));
-    var slip=el('div','formula-slip');
-    var f=el('div',null,'');f.setAttribute('data-latex',c.latex||'');f.appendChild(el('span','formula-raw',esc(c.latex||'')));
-    slip.appendChild(f);card.appendChild(slip);
-  }else{
-    card.appendChild(el('h3',null,esc(c.term_en||'')));
-    if(c.term_zh)card.appendChild(el('div','zhterm',esc(c.term_zh)));
+function doInterp(){
+  const raw = parseFloat(document.getElementById('xin').value);
+  const out = document.getElementById('interpOut');
+  if(isNaN(raw)){ out.innerHTML='<div class="work">請輸入數字</div>'; return; }
+  const neg = raw<0;
+  const x = Math.abs(raw);
+  // 下界 x0 = 截到第2位小數;上界 x1 = x0 + 0.01
+  const x0 = Math.floor(x*100)/100;
+  const x1 = x0 + 0.01;
+  const w  = (x - x0)/0.01;                 // 第3、4位小數轉成權重
+  const n0 = lookupPos(x0);
+  const n1 = lookupPos(x1);
+  const nPos = n0 + w*(n1-n0);
+  const nFinal = neg ? 1 - nPos : nPos;
+  let html = '<div class="work">';
+  if(neg){
+    html += `輸入 x = <span class="hl">${f4(raw)}</span>(負值 → 先查 |x| 再用對稱 N(−x)=1−N(x))<br>`;
+  } else {
+    html += `輸入 x = <span class="hl">${f4(raw)}</span><br>`;
   }
-  var lang=el('div','lang');
-  if(c.en)lang.appendChild(el('div','en','<span class="lab">EN</span>'+para(c.en)));
-  if(c.zh)lang.appendChild(el('div','zh','<span class="lab">中文 詳細說明</span>'+para(c.zh)));
-  card.appendChild(lang);
-  if(c.vars_en||c.vars_zh){
-    var v=el('div','vars');
-    if(c.vars_en)v.innerHTML+='<div><span class="mono">vars</span> · '+esc(c.vars_en)+'</div>';
-    if(c.vars_zh)v.innerHTML+='<div style="margin-top:3px">'+esc(c.vars_zh)+'</div>';
-    card.appendChild(v);
+  html += `① 下界 x₀ = <span class="hl">${fmt2(x0)}</span> → N(x₀) = <span class="hl">${f4(n0)}</span><br>`;
+  html += `② 上界 x₁ = <span class="hl">${fmt2(x1)}</span> → N(x₁) = <span class="hl">${f4(n1)}</span><br>`;
+  html += `③ 權重 w = (${f4(x)} − ${fmt2(x0)}) / 0.01 = <span class="hl">${f4(w)}</span><br>`;
+  html += `④ 內插 = ${f4(n0)} + ${f4(w)} × (${f4(n1)} − ${f4(n0)}) = <span class="hl">${f4(nPos)}</span>`;
+  if(neg){
+    html += `<br>⑤ 對稱:N(${f4(raw)}) = 1 − ${f4(nPos)} = <span class="big">${f4(nFinal)}</span>`;
+  } else {
+    html += `<br><br>N(${f4(raw)}) ≈ <span class="big">${f4(nFinal)}</span>`;
   }
-  if(c.ex_zh){
-    var ex=el('div','example');
-    ex.innerHTML='<div class="exlab">舉例說明</div>'+para(c.ex_zh);
-    card.appendChild(ex);
-  }
-  return card;
+  html += '</div>';
+  out.innerHTML = html;
 }
+function setX(v){ document.getElementById('xin').value=v; doInterp(); }
 
-/* ---------- QUIZ session engine ---------- */
-var session=null; // {ids, i, mode:'practice'|'review', recordFresh:bool}
-function startSession(ids,opts){
-  opts=opts||{};
-  session={ids:ids,i:0,mode:opts.mode||'practice',answeredThis:0,correctThis:0};
-  setView(current);
-  renderSession();
-}
-function renderSession(){
-  var host=document.getElementById('view');host.innerHTML='';
-  var total=session.ids.length;
-  if(total===0){host.appendChild(sessionEmpty());return;}
-  if(session.i>=total){host.appendChild(sessionDone());return;}
-  var id=session.ids[session.i], q=Q_BY_ID[id];
-  var ut=UNIT_TITLE[q.unit];
+// 預設先跑一次
+doInterp();
 
-  var pb=el('div','progressbar','<i style="width:'+Math.round(session.i/total*100)+'%"></i>');
-  host.appendChild(el('div','countline','第 '+(session.i+1)+' / '+total+' 題　·　本回合答對 '+session.correctThis+'／'+session.answeredThis));
-  host.appendChild(pb);
-
-  var qc=el('div','quizcard');
-  var head=el('div','qhead');
-  head.innerHTML='<span class="meta">'+esc(ut.code)+' · '+esc(ut.zh)+'</span>'+
-    '<span class="diffpill '+q.diff+'">'+DIFF_ZH[q.diff]+'</span>';
-  var star=el('button','star'+(isStarred(id)?' on':''),'★');
-  star.title='標記星號';
-  star.onclick=function(){state.starred[id]=isStarred(id)?undefined:true;if(!state.starred[id])delete state.starred[id];save();star.classList.toggle('on');refreshBadges();};
-  head.appendChild(star);
-  qc.appendChild(head);
-
-  var body=el('div','qbody');
-  body.appendChild(el('p','qtext',esc(q.q)));
-  var opts=el('div','opts');
-  var keys=['A','B','C','D'];
-  q.opts.forEach(function(o,k){
-    var b=el('button','opt','<span class="key">'+keys[k]+'</span><span>'+esc(o)+'</span>');
-    b.onclick=function(){answer(id,k,qc,opts,body);};
-    opts.appendChild(b);
+// scrollspy 導覽列高亮
+const secs=[...document.querySelectorAll('main section[id]')];
+const navlinks=[...document.querySelectorAll('nav a')];
+function spy(){
+  const y=window.scrollY+120;
+  let cur=secs[0]?.id;
+  for(const s of secs){ if(s.offsetTop<=y) cur=s.id; }
+  navlinks.forEach(a=>{
+    a.style.background = a.getAttribute('href')==='#'+cur ? 'rgba(255,255,255,.18)' : '';
+    a.style.color = a.getAttribute('href')==='#'+cur ? '#fff' : '';
   });
-  body.appendChild(opts);
-  qc.appendChild(body);
-
-  var foot=el('div','quizfoot');
-  var skip=el('button','btn ghost sm','跳過');
-  skip.onclick=function(){session.i++;renderSession();};
-  foot.appendChild(skip);
-  qc.appendChild(foot);
-  host.appendChild(qc);
+  // 回頂按鈕
+  document.querySelector('.totop').classList.toggle('show', window.scrollY>500);
 }
-function answer(id,chosen,qc,optsWrap,body){
-  var q=Q_BY_ID[id], correct=(chosen===q.ans);
-  // record attempt (fresh practice + review both update correctness)
-  var prev=state.attempts[id];
-  state.attempts[id]={chosen:chosen,correct:correct,count:(prev?prev.count:0)+1,ts:Date.now()};
-  save();refreshBadges();
-  session.answeredThis++; if(correct)session.correctThis++;
-  // lock options + colorize
-  var btns=optsWrap.querySelectorAll('.opt');
-  btns.forEach(function(b,k){
-    b.disabled=true;
-    if(k===q.ans)b.classList.add('correct');
-    else if(k===chosen)b.classList.add('wrong');
-    else b.classList.add('dim');
-  });
-  // explanation
-  var ex=el('div','explain '+(correct?'ok':'no'));
-  ex.innerHTML='<div class="verdict">'+(correct?'✓ 答對了':'✗ 答錯了')+'</div>'+
-    '<div><span class="lab">詳解</span></div><div style="margin-top:4px">'+esc(q.exp)+'</div>';
-  body.appendChild(ex);
-  // footer -> next
-  var foot=qc.querySelector('.quizfoot');foot.innerHTML='';
-  var more=session.i<session.ids.length-1;
-  var nx=el('button','btn',more?'下一題 →':'完成本回合 ✓');
-  nx.onclick=function(){session.i++;renderSession();};
-  foot.appendChild(nx);
-  var note=el('span',null,'');note.style.cssText='font-size:12.5px;color:var(--muted);margin-left:auto';
-  note.textContent=isStarred(id)?'已加星號':'';
-  foot.appendChild(note);
-}
-function sessionDone(){
-  var d=el('div','empty');
-  var pct=session.answeredThis?Math.round(session.correctThis/session.answeredThis*100):0;
-  d.innerHTML='<div class="big">🎉</div><h3>本回合完成</h3>'+
-    '<p>作答 '+session.answeredThis+' 題，答對 '+session.correctThis+' 題（'+pct+'%）。</p>';
-  var row=el('div','row');row.style.justifyContent='center';row.style.marginTop='14px';
-  var again=el('button','btn ghost','返回設定');again.onclick=function(){session=null;setView(current);};
-  row.appendChild(again);
-  d.appendChild(row);return d;
-}
-function sessionEmpty(){
-  var d=el('div','empty');
-  d.innerHTML='<div class="big">📭</div><h3>沒有可作答的題目</h3><p>換個單元或難度，或到「未作答／錯題複習」看看。</p>';
-  return d;
-}
-
-/* ---------- QUIZ (config) ---------- */
-var quizCfg={unit:'all',diff:'all'};
-function viewQuiz(host){
-  if(session){renderSession();return;}
-  host.appendChild(el('div','pagehead','<div class="ey">測驗 · Quiz</div><h2>開始測驗</h2><p>選擇單元與難度後開始。預設只出「尚未作答」的題目，因此寫過的不會重複；作答時可按 ★ 標記題目供日後複習。</p>'));
-
-  var box=el('div','card');
-  // unit select
-  var fu=el('div','field');fu.appendChild(el('span','lab','單元 Unit'));
-  var sel=el('select');sel.appendChild(new Option('全部單元 All units','all'));
-  LESSONS.forEach(function(u){sel.appendChild(new Option(u.title_zh+'  ('+u.code+')',u.key));});
-  sel.value=quizCfg.unit;sel.onchange=function(){quizCfg.unit=sel.value;updateAvail();};
-  fu.appendChild(sel);box.appendChild(fu);
-  // diff seg
-  var fd=el('div','field');fd.appendChild(el('span','lab','難度 Difficulty'));
-  var seg=el('div','seg');
-  [['all','全部'],['basic','基本題'],['hard','中上']].forEach(function(p){
-    var b=el('button',quizCfg.diff===p[0]?'on':null,p[1]);
-    b.onclick=function(){quizCfg.diff=p[0];seg.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');updateAvail();};
-    seg.appendChild(b);
-  });
-  fd.appendChild(seg);box.appendChild(fd);
-
-  var avail=el('div','countline','');box.appendChild(avail);
-  var inclWrap=el('label',null,'');inclWrap.style.cssText='display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--muted);margin:6px 0 14px';
-  var incl=el('input');incl.type='checkbox';incl.id='inclDone';
-  inclWrap.appendChild(incl);inclWrap.appendChild(document.createTextNode('包含已作答過的題目（重新練習）'));
-  box.appendChild(inclWrap);
-
-  var go=el('button','btn','開始作答');
-  go.onclick=function(){
-    var ids=poolFor(quizCfg,incl.checked);
-    if(!ids.length){return;}
-    startSession(shuffle(ids),{mode:'practice'});
-  };
-  box.appendChild(go);
-  host.appendChild(box);
-
-  function matchFn(q){return (quizCfg.unit==='all'||q.unit===quizCfg.unit)&&(quizCfg.diff==='all'||q.diff===quizCfg.diff);}
-  function poolFor(cfg,includeDone){
-    return QUESTIONS.filter(function(q){
-      if(!matchFn(q))return false;
-      if(!includeDone&&isAnswered(q.id))return false;
-      return true;
-    }).map(function(q){return q.id;});
-  }
-  function updateAvail(){
-    var fresh=poolFor(quizCfg,false).length, all=QUESTIONS.filter(matchFn).length;
-    avail.textContent='可作答（未寫過）：'+fresh+' 題　·　符合條件共 '+all+' 題';
-    go.disabled=fresh===0&&!incl.checked;
-  }
-  incl.onchange=function(){updateAvail();};
-  updateAvail();
-}
-
-/* ---------- TODO (unanswered) ---------- */
-function viewTodo(host){
-  if(session){renderSession();return;}
-  host.appendChild(el('div','pagehead','<div class="ey">未作答 · To-do</div><h2>未作答題庫</h2><p>這裡只收尚未作答的題目。開始練習後，寫過的題目就會離開這一區，下次不再重複。</p>'));
-  var left=unansweredIds();
-  if(!left.length){
-    var d=el('div','empty');d.innerHTML='<div class="big">✅</div><h3>全部題目都寫過了！</h3><p>200 題已全數作答。可到「錯題複習」鞏固，或在「測驗」勾選重練。</p>';
-    host.appendChild(d);return;
-  }
-  // per-unit remaining
-  host.appendChild(el('div','countline','尚餘 '+left.length+' 題未作答'));
-  LESSONS.forEach(function(u){
-    var rem=QUESTIONS.filter(function(q){return q.unit===u.key&&!isAnswered(q.id);});
-    var tot=QUESTIONS.filter(function(q){return q.unit===u.key;}).length;
-    if(!rem.length)return;
-    var c=el('div','uprog');
-    c.innerHTML='<div class="top"><span>'+esc(u.title_zh)+' <span style="color:var(--muted);font-weight:500">'+esc(u.code)+'</span></span>'+
-      '<span class="pct">'+rem.length+' / '+tot+' 未寫</span></div>'+
-      '<div class="bar"><i style="width:'+Math.round((tot-rem.length)/tot*100)+'%"></i></div>';
-    host.appendChild(c);
-  });
-  var row=el('div','row');row.style.marginTop='20px';
-  var allb=el('button','btn','開始練習全部未作答（'+left.length+'）');
-  allb.onclick=function(){startSession(shuffle(left),{mode:'practice'});};
-  row.appendChild(allb);
-  host.appendChild(row);
-}
-
-/* ---------- REVIEW (wrong + starred) ---------- */
-var reviewTab='wrong';
-function viewReview(host){
-  if(session){renderSession();return;}
-  host.appendChild(el('div','pagehead','<div class="ey">錯題複習 · Review</div><h2>錯題與星號題</h2><p>把答錯的題目和你標記 ★ 的題目集中在這裡，可以重新作答。答對後該題會自動離開錯題清單。</p>'));
-  var seg=el('div','seg');seg.style.marginBottom='6px';
-  var wN=wrongIds().length, sN=starredIds().length;
-  [['wrong','錯題 ('+wN+')'],['starred','星號 ('+sN+')']].forEach(function(p){
-    var b=el('button',reviewTab===p[0]?'on':null,p[1]);
-    b.onclick=function(){reviewTab=p[0];setView('review');};
-    seg.appendChild(b);
-  });
-  host.appendChild(seg);
-
-  var ids=reviewTab==='wrong'?wrongIds():starredIds();
-  if(!ids.length){
-    var d=el('div','empty');
-    if(reviewTab==='wrong')d.innerHTML='<div class="big">👍</div><h3>目前沒有錯題</h3><p>答錯的題目會出現在這裡，方便你重練。</p>';
-    else d.innerHTML='<div class="big">⭐</div><h3>還沒有星號題</h3><p>作答時按右上角 ★ 即可把重要題目收藏到這裡。</p>';
-    host.appendChild(d);return;
-  }
-  var row=el('div','row');row.style.margin='10px 0 16px';
-  var pb=el('button','btn','重新作答這 '+ids.length+' 題');
-  pb.onclick=function(){startSession(shuffle(ids),{mode:'review'});};
-  row.appendChild(pb);
-  if(reviewTab==='starred'){
-    var clr=el('button','btn ghost sm','清除全部星號');
-    clr.onclick=function(){if(confirm('確定清除所有星號標記？')){state.starred={};save();setView('review');}};
-    row.appendChild(clr);
-  }
-  host.appendChild(row);
-
-  var list=el('div','reviewlist');
-  ids.forEach(function(id){
-    var q=Q_BY_ID[id],ut=UNIT_TITLE[q.unit];
-    var it=el('button','revitem');
-    it.innerHTML='<span class="ix">'+ut.code.replace('Ch ','Ch')+'</span>'+
-      '<span class="qt">'+esc(q.q)+'</span>'+
-      '<span class="mk">'+(isStarred(id)?'⭐':'✗')+'</span>';
-    it.onclick=function(){startSession([id],{mode:'review'});};
-    list.appendChild(it);
-  });
-  host.appendChild(list);
-}
-
-/* ---------- PROGRESS ---------- */
-function viewProgress(host){
-  host.appendChild(el('div','pagehead','<div class="ey">進度 · Progress</div><h2>學習進度</h2><p>整體與各單元的作答狀況。資料儲存在這台裝置的瀏覽器中。</p>'));
-  var ansIds=Object.keys(state.attempts);
-  var answered=ansIds.length;
-  var correct=ansIds.filter(function(id){return state.attempts[id].correct;}).length;
-  var rate=answered?Math.round(correct/answered*100):0;
-  var tiles=el('div','tiles');
-  function tile(n,l,acc){var t=el('div','tile'+(acc?' accent':''));t.innerHTML='<div class="n">'+n+'</div><div class="l">'+l+'</div>';return t;}
-  tiles.appendChild(tile(answered+'<span style="font-size:16px;color:var(--muted)"> / 200</span>','已作答題數',true));
-  tiles.appendChild(tile(rate+'%','正確率'));
-  tiles.appendChild(tile(wrongIds().length,'待複習錯題'));
-  tiles.appendChild(tile(starredIds().length,'星號題'));
-  host.appendChild(tiles);
-
-  host.appendChild(el('div',null,'<h3 style="font-size:17px;margin:18px 0 6px">各單元進度</h3>'));
-  LESSONS.forEach(function(u){
-    var qs=QUESTIONS.filter(function(q){return q.unit===u.key;});
-    var done=qs.filter(function(q){return isAnswered(q.id);}).length;
-    var cor=qs.filter(function(q){return state.attempts[q.id]&&state.attempts[q.id].correct;}).length;
-    var c=el('div','uprog');
-    var pct=qs.length?Math.round(done/qs.length*100):0;
-    c.innerHTML='<div class="top"><span>'+esc(u.title_zh)+' <span style="color:var(--muted);font-weight:500">'+esc(u.code)+'</span></span>'+
-      '<span class="pct">'+done+'/'+qs.length+'　正確 '+cor+'</span></div>'+
-      '<div class="bar"><i style="width:'+pct+'%"></i></div>';
-    host.appendChild(c);
-  });
-
-  var foot=el('div','row');foot.style.marginTop='26px';
-  var reset=el('button','btn danger','清除全部進度');
-  reset.onclick=function(){
-    if(confirm('確定要清除所有作答紀錄、錯題與星號嗎？此動作無法復原。')){
-      state={attempts:{},starred:{}};save();refreshBadges();setView('progress');
-    }
-  };
-  foot.appendChild(reset);
-  host.appendChild(foot);
-  host.appendChild(el('div','notice','提示：紀錄存放於本機瀏覽器 localStorage。換裝置、清除瀏覽器資料或使用無痕模式時，進度不會保留。'));
-}
-
-/* ---------- boot ---------- */
-refreshBadges();
-setView('learn',LESSONS[0].key);
-// re-render KaTeX once the script finishes loading (defer)
-window.addEventListener('load',function(){if(current==='learn')renderTeX(document.getElementById('view'));});
+window.addEventListener('scroll',spy); spy();
 </script>
 </body>
 </html>
